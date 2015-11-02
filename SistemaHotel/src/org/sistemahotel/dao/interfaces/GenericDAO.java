@@ -15,6 +15,8 @@ import java.util.List;
 public interface GenericDAO<T, Type extends Serializable> {
     void beginTransaction();
     void commitTransaction();
+    void closeTransaction();
+    void rollbackTransaction();
     void save(T entity);
     void delete(T entity);
     public List<T> listAll();

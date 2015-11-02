@@ -5,44 +5,54 @@
  */
 package org.sistemahotel.dao.HibernateUtil;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.hibernate.Session;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
 /**
+ * Hibernate Utility class with a convenient method to get Session Factory
+ * object.
  *
  * @author GILIARD
  */
-public class HibernateUtil {
-   private static EntityManagerFactory factory = null;
-   private static EntityManager manager = null;
-   
-   static{
-       try {
-           factory = Persistence.createEntityManagerFactory("SistemaHotelPU");
-           manager = factory.createEntityManager();
-       } catch (Exception e) {
-           throw new RuntimeException("Erro na conexao com o banco da dados\n Verifique",e);
-       }
-   }
-   
-   public static EntityManager getEntityManager(){
-       return manager;
-   }
-   
-   public static void beginTransaction(){
-       getEntityManager().getTransaction().begin();      
-   }
-   
-   public static void commitTransaction(){
-       getEntityManager().getTransaction().commit();
-   }
-   
-   public static void rollbackTransaction(){
-       getEntityManager().getTransaction().rollback();
-   }
-   
-   public static void closeTransaction(){
-       getEntityManager().close();
-   }
+public class HibernateUtil  {
+
+    private static final SessionFactory sessionFactory;
+    
+    static {
+        try {
+            // Create the SessionFactory from standard (hibernate.cfg.xml) 
+            // config file.
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            // Log the exception. 
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+    
+    private static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
+    public static Session getSession(){
+        return getSessionFactory().getCurrentSession();
+    }
+    
+    public static void beginTransaction(){
+        getSessionFactory().getCurrentSession().beginTransaction();
+    }
+    
+    public static void commitTransaction(){
+        getSessionFactory().getCurrentSession().getTransaction().commit();
+    }
+    
+    public static void closeTransaction(){
+        getSessionFactory().getCurrentSession().close();
+    }
+    
+    public static void rollbackTransaction(){
+        getSessionFactory().getCurrentSession().getTransaction().rollback();
+    }
+    
 }
