@@ -14,7 +14,6 @@ CREATE TABLE Endereco (
   nomeLodradouro VARCHAR(50),
   numero VARCHAR(10),
   cidade VARCHAR(50),
-  idEstado INTEGER,
   complemento VARCHAR(50)
 ) ;
 
