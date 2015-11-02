@@ -114,10 +114,10 @@ CREATE TABLE Categoria_Acomodacao (
   codTipoAcomodacao VARCHAR(10) NOT NULL,
   nomeTipoAcomodacao VARCHAR(50) NOT NULL,
   descricaoTipoAcomodacao VARCHAR(100),
-  quantidadeTipoAcomodacao INT NOT NULL,
+  quantidadeTipoAcomodacao INT,
   precoDiariaTipoAcomodacao NUMERIC(10,2),
-  quantidadeAdultos INT NOT NULL,
-  quantidadeCriancas INT NOT NULL
+  quantidadeAdultos INT,
+  quantidadeCriancas INT
 );
 
 -- -----------------------------------------------------
@@ -126,8 +126,8 @@ CREATE TABLE Categoria_Acomodacao (
 
 CREATE TABLE Reserva (
   idReservas SERIAL PRIMARY KEY,
-  dataHoraChegadaReserva DATE NOT NULL,
-  dataHoraSaidaReserva DATE NOT NULL,
+  dataHoraChegadaReserva TIMESTAMP NOT NULL,
+  dataHoraSaidaReserva TIMESTAMP NULL,
   numeroCartaoCredito VARCHAR(16) NULL,
   codCartaoCredito VARCHAR(3) NULL,
   desconto NUMERIC(10, 2) NULL,
@@ -135,6 +135,14 @@ CREATE TABLE Reserva (
   idHospede INTEGER NOT NULL,
   idCategoriaAcomodacao INTEGER NOT NULL 
  );
+ -- -----------------------------------------------------
+-- Tabela Acompanhante_Reserva
+-- -----------------------------------------------------
+CREATE TABLE Acompanhante_Reserva (
+	idAcompanhante INTEGER NOT NULL,
+	idReservas INTEGER NOT NULL,
+	PRIMARY KEY (idAcompanhante, idReservas)
+);
 
 -- -----------------------------------------------------
 -- Tabela CadastroEntrada
@@ -142,8 +150,8 @@ CREATE TABLE Reserva (
 
 CREATE TABLE Cadastro_Entrada (
   idCadastroEntrada SERIAL PRIMARY KEY,
-  dataHoraEntrada DATE NOT NULL,
-  dataHoraSaidaPrevista DATE NOT NULL,
+  dataHoraEntrada TIMESTAMP NOT NULL,
+  dataHoraSaidaPrevista TIMESTAMP NOT NULL,
   desconto NUMERIC(10, 2) NULL,
   numeroCartaoCredito VARCHAR(16) NULL,
   codCartaoCredito VARCHAR(3) NULL,
@@ -153,12 +161,22 @@ CREATE TABLE Cadastro_Entrada (
 );
 
 -- -----------------------------------------------------
+-- Tabela Acompanhante_Cadastro_Entrada
+-- -----------------------------------------------------
+
+CREATE TABLE Acompanhante_Cadastro_Entrada (
+	idCadastroEntrada INTEGER NOT NULL,
+	idAcompanhante INTEGER NOT NULL,
+	PRIMARY KEY (idAcompanhante, idCadastroEntrada)
+);
+
+-- -----------------------------------------------------
 -- Tabela CadastroSaida
 -- -----------------------------------------------------
 
 CREATE TABLE Cadastro_Saida (
   idCadastroSaida SERIAL PRIMARY KEY,
-  dataHoraSaida DATE NOT NULL,
+  dataHoraSaida TIMESTAMP NOT NULL,
   quantidadeDiariasCobradas INT NOT NULL,
   valorGastoTelefonema NUMERIC(10, 2) NOT NULL,
   descontoConcedido NUMERIC(10, 2) NULL,
@@ -197,7 +215,7 @@ CREATE TABLE Consumo_Hospede (
   idconsumohospede SERIAL PRIMARY KEY,
   quantidadeConsumida INT NOT NULL,
   dataHoraConsumo DATE NULL,
-  valorTotalConsumido NUMERIC(10, 2) NOT NULL DEFAULT 0,
+  valorTotalConsumido NUMERIC(10, 2) NOT NULL,
   idCadastroEntrada INT NOT NULL,  
   idFuncionario INT NOT NULL
 );
@@ -291,6 +309,13 @@ ALTER TABLE Cadastro_Saida ADD CONSTRAINT Saida_TipoPagamento_fk FOREIGN KEY (id
 
 ALTER TABLE Fatura ADD CONSTRAINT Fatura_Saida_fk FOREIGN KEY (idCadastroSaida) REFERENCES Cadastro_Saida(idCadastroSaida);
 
+ALTER TABLE Acompanhante_Reserva ADD CONSTRAINT acompanhante_reserva_fk FOREIGN KEY (idAcompanhante) REFERENCES Acompanhante(idAcompanhante);
+
+ALTER TABLE Acompanhante_Reserva ADD CONSTRAINT reserva_acompanhante_fk FOREIGN KEY (idReservas) REFERENCES Reserva(idReservas);
+
+ALTER TABLE Acompanhante_Cadastro_Entrada ADD CONSTRAINT acompanhante_entrada FOREIGN KEY (idAcompanhante) REFERENCES Acompanhante(idAcompanhante);
+
+ALTER TABLE Acompanhante_Cadastro_Entrada ADD CONSTRAINT entrada_acompanhante FOREIGN KEY (idCadastroEntrada) REFERENCES Cadastro_Entrada(idCadastroEntrada);
 
 -- CRIAÇÃO DOS INDICES PARA PESQUISA
 
