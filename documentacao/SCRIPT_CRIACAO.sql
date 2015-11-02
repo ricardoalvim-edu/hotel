@@ -233,9 +233,7 @@ CREATE TABLE ConsumoHospede_tem_Produto (
 
 
 -- -----------------------------------------------------
-
 -- Tabela TipoPagamento
-
 -- -----------------------------------------------------
 
 CREATE TABLE Tipo_Pagamento (
@@ -266,8 +264,6 @@ CREATE TABLE Fatura (
 -- CRIAÇÃO DAS CHAVES ESTRANGEIRAS
 
 -- ALTER TABLE nome_tabela ADD CONSTRAINT nome_restrição FOREIGN KEY (nome_coluna) REFERENCES Nome_tabela_referenciada(nome_coluna_referenciada);
-
-ALTER TABLE Endereco ADD CONSTRAINT Estado_endereco_fk  FOREIGN KEY (idEstado) REFERENCES Estado(idEstado);
 
 ALTER TABLE Hospede ADD CONSTRAINT Hospede_Endereco_fk  FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco);
 
