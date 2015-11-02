@@ -1,0 +1,5 @@
+# Arquivos temporarios do Astah e outros
+*.lock
+*.bak
+*.jpg
+*.db
