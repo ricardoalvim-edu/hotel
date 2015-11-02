@@ -1,0 +1,6 @@
+-- -----------------------------------------------------
+-- SISTEMA GERENCIADOR DE BANCO DE DADOS
+-- Funções e triggers: implementando as regras de nogócio no banco de dado;
+-- ALUNOS: Giliard Almeidade de Godoi & Ricardo Carreiro Alvim
+-- PROJETO PARA A DISCIPLINA DE BANCO DE DADOS 3 - 2015/2
+-- -----------------------------------------------------
