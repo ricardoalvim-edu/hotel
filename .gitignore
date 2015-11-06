@@ -5,3 +5,6 @@
 *.db
 /SistemaHotel/nbproject/private/
 /SistemaHotel/build/
+/CaelumThreads/nbproject/private/
+/CaelumThreads/build/
+/SistemaEstoque/nbproject/private/
