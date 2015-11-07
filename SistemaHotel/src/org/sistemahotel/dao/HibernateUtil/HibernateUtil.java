@@ -18,7 +18,10 @@ import org.hibernate.SessionFactory;
 public class HibernateUtil  {
 
     private static final SessionFactory sessionFactory;
-    
+    /*
+        Blocos estáticos são inicializados somente uma vez na aplicação. 
+    Por isso são usados em rotinas de inicialização do sistema.
+    */
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
