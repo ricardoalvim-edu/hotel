@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Funcionario;
  *
  * @author GILIARD
  */
-public interface FuncionarioDAO extends GenericDAO<Funcionario, Integer>{
+public interface FuncionarioDAO extends DAO<Funcionario, Integer>{
     
 }

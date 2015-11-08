@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Acomodacao;
  *
  * @author GILIARD
  */
-public interface AcomodacaoDAO extends GenericDAO<Acomodacao, Integer> {
+public interface AcomodacaoDAO extends DAO<Acomodacao, Integer> {
     
 }

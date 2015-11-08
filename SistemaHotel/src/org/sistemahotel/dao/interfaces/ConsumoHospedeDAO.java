@@ -11,6 +11,6 @@ import org.sistemahotel.Model.ConsumoHospede;
  *
  * @author GILIARD
  */
-public interface ConsumoHospedeDAO extends GenericDAO<ConsumoHospede, Integer> {
+public interface ConsumoHospedeDAO extends DAO<ConsumoHospede, Integer> {
     
 }

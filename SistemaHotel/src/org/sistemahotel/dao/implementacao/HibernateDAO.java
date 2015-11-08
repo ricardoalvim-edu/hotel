@@ -10,13 +10,13 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
-import org.sistemahotel.dao.interfaces.GenericDAO;
+import org.sistemahotel.dao.interfaces.DAO;
 
 /**
  *
  * @author GILIARD
  */
-public abstract class HibernateDAO<T, Type extends Serializable> implements GenericDAO<T, Type> {
+public abstract class HibernateDAO<T, Type extends Serializable> implements DAO<T, Type> {
     private final Class<T> entity;
     private Session session;
 

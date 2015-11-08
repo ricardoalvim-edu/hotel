@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Endereco;
  *
  * @author GILIARD
  */
-public interface EnderecoDAO extends GenericDAO<Endereco, Integer>{
+public interface EnderecoDAO extends DAO<Endereco, Integer>{
     
 }

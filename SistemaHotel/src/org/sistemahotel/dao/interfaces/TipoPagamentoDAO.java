@@ -11,6 +11,6 @@ import org.sistemahotel.Model.TipoPagamento;
  *
  * @author GILIARD
  */
-public interface TipoPagamentoDAO extends GenericDAO<TipoPagamento, Integer>{
+public interface TipoPagamentoDAO extends DAO<TipoPagamento, Integer>{
     
 }

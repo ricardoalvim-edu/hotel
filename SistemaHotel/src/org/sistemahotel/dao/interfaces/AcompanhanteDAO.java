@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Acompanhante;
  *
  * @author GILIARD
  */
-public interface AcompanhanteDAO extends GenericDAO<Acompanhante, Integer>{
+public interface AcompanhanteDAO extends DAO<Acompanhante, Integer>{
     
 }

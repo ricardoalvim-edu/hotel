@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Reserva;
  *
  * @author GILIARD
  */
-public interface ReservaDAO extends GenericDAO<Reserva, Integer>{
+public interface ReservaDAO extends DAO<Reserva, Integer>{
     
 }

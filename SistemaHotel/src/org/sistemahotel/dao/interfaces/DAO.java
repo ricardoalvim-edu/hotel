@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author GILIARD
  */
-public interface GenericDAO<T, Type extends Serializable> {
+public interface DAO<T, Type extends Serializable> {
     void beginTransaction();
     void commitTransaction();
     void closeTransaction();

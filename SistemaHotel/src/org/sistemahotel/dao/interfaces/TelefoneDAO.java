@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Telefone;
  *
  * @author GILIARD
  */
-public interface TelefoneDAO extends GenericDAO<Telefone,Integer> {
+public interface TelefoneDAO extends DAO<Telefone,Integer> {
     
 }

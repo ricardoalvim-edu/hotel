@@ -11,6 +11,6 @@ import org.sistemahotel.Model.CategoriaProduto;
  *
  * @author GILIARD
  */
-public interface CategoriaProdutoDAO extends GenericDAO<CategoriaProduto, Integer>{
+public interface CategoriaProdutoDAO extends DAO<CategoriaProduto, Integer>{
     
 }

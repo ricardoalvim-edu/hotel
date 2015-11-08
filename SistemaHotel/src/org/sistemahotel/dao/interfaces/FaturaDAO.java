@@ -11,6 +11,6 @@ import org.sistemahotel.Model.Fatura;
  *
  * @author GILIARD
  */
-public interface FaturaDAO extends GenericDAO<Fatura, Integer> {
+public interface FaturaDAO extends DAO<Fatura, Integer> {
     
 }

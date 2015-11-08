@@ -11,6 +11,6 @@ import org.sistemahotel.Model.CadastroSaida;
  *
  * @author GILIARD
  */
-public interface CadastroSaidaDAO extends GenericDAO<CadastroSaida, Integer> {
+public interface CadastroSaidaDAO extends DAO<CadastroSaida, Integer> {
     
 }
