@@ -21,4 +21,8 @@ public interface GenericDAO<T, Type extends Serializable> {
     void delete(T entity);
     public List<T> listAll();
     public T getById(Type id);
+    
+    public void saveAndCommit(T entity);
+    public void deleteAndCommit(T entity);
+    public List<T> listPaged(int begin, int amount);
 }

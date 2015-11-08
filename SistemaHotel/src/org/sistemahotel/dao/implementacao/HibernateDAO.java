@@ -8,7 +8,7 @@ package org.sistemahotel.dao.implementacao;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
 import org.sistemahotel.dao.interfaces.GenericDAO;
 
@@ -18,6 +18,7 @@ import org.sistemahotel.dao.interfaces.GenericDAO;
  */
 public abstract class HibernateDAO<T, Type extends Serializable> implements GenericDAO<T, Type> {
     private final Class<T> entity;
+    private Session session;
 
     public HibernateDAO(Class entityPersistent) {
         super();
@@ -46,29 +47,33 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 
     @Override
     public void save(T entity) {
-        try {
-           HibernateUtil.getSession().saveOrUpdate(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+        HibernateUtil.getSession().saveOrUpdate(entity);
     }
 
     @Override
     public void delete(T entity) {
-        try {
-            HibernateUtil.getSession().delete(entity);
-        } catch (HibernateException e) {
-            e.printStackTrace();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        HibernateUtil.getSession().delete(entity);
     }
 
     @Override
+    public void deleteAndCommit(T entity) {
+       this.beginTransaction();
+       this.delete(entity);
+       this.commitTransaction();
+    }
+
+    @Override
+    public void saveAndCommit(T entity) {
+        this.beginTransaction();
+        this.save(entity);
+        this.commitTransaction();
+    }
+    
+    @Override
     public List<T> listAll() {
-        HibernateUtil.beginTransaction();
+        this.beginTransaction();
         Criteria criteria = HibernateUtil.getSession().createCriteria(entity);
+        this.commitTransaction();
         return criteria.list();
     }
 
@@ -79,9 +84,26 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
     */
     @Override
     public T getById(Type id) {
-        HibernateUtil.beginTransaction();
+        this.beginTransaction();
         T objeto = (T) HibernateUtil.getSession().load(entity, id);
+        this.commitTransaction();
         return objeto;
-    }  
+    }
+
+    @Override
+    public List<T> listPaged(int first, int amount) {
+        List<T> lista = null;
+        this.beginTransaction();
+        lista = HibernateUtil.getSession()
+                .createCriteria(entity)
+                .setMaxResults(amount)
+                .setFirstResult(first)
+                .list();
+        this.commitTransaction();
+        return lista;
+    }
+    
+    
+    
     
 }

@@ -43,9 +43,8 @@ public final class MyTableModel extends AbstractTableModel{
     }
     
     private void inicializaColunasEditaveisFalse(int colunas){
-        int tam = colunas;
-        this.colEditaveis = new boolean[tam];
-        for (int i = 0; i < tam; i++) {
+        this.colEditaveis = new boolean[colunas];
+        for (int i = 0; i < colunas; i++) {
             this.colEditaveis[i] = false;          
         }
     }
