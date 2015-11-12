@@ -17,8 +17,8 @@ import org.sistemahotel.dao.interfaces.DAO;
  * @author GILIARD
  */
 public abstract class HibernateDAO<T, Type extends Serializable> implements DAO<T, Type> {
+    
     private final Class<T> entity;
-    private Session session;
 
     public HibernateDAO(Class entityPersistent) {
         super();
@@ -37,7 +37,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements DAO<
     
     @Override
     public void closeTransaction() {
-        HibernateUtil.closeTransaction();
+        HibernateUtil.closeSession();
     }
     
     @Override

@@ -61,7 +61,9 @@ CREATE OR REPLACE VIEW saida_por_hospede AS
 		FROM cadastro_saida AS cs INNER JOIN ( SELECT eh.idCadastroEntrada, eh.idHospede, eh.nomeHospede, eh.rgHospede, eh.dataHoraEntrada, eh.dataHoraSaidaPrevista
 												FROM entrada_hospede  AS eh ) AS ce USING (idCadastroEntrada);
 	
--- 10)
+-- 10) lista total de consumo por entrada
+
+
 
 
 -- -----------------------------------------------------

@@ -17,42 +17,43 @@ import org.sistemahotel.dao.interfaces.DAO;
 public abstract class Controller<T>{
    
     protected List<T> lista;
-    IteratorList<T> iterator = new IteratorList<>(lista);
+    IteratorList<T> iterator = null;
     protected DAO dao;
     
     
    
+    
    protected abstract T novo(); 
    
-   protected void salvar(T objeto){
+   public  void salvar(T objeto){
        dao.saveAndCommit(objeto);
    }
    
-   protected void excluir(T objeto){
+   public void excluir(T objeto){
        dao.deleteAndCommit(objeto);
    }   
    
-   protected T exibeProximo(){
+   public T exibeProximo(){
        T objeto = iterator.next();
        return objeto;
    }
    
-   protected T exibeAnterior(){
+   public T exibeAnterior(){
        T objeto = iterator.previous();
        return objeto;
    }
    
-   protected T exibeUltimo(){
+   public T exibeUltimo(){
        T objeto = iterator.last();
        return objeto;
    }
    
-   protected T exibePrimeiro(){
+   public T exibePrimeiro(){
        T objeto = iterator.first();
        return objeto;
    }
    
-   protected List<T> listarTudo(){
+   public List<T> listarTudo(){
        return dao.listAll();
    }
       

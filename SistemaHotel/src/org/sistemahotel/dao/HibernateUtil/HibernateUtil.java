@@ -18,6 +18,7 @@ import org.hibernate.SessionFactory;
 public class HibernateUtil  {
 
     private static final SessionFactory sessionFactory;
+    
     /*
         Blocos estáticos são inicializados somente uma vez na aplicação. 
     Por isso são usados em rotinas de inicialização do sistema.
@@ -43,15 +44,15 @@ public class HibernateUtil  {
     }
     
     public static void beginTransaction(){
-        getSessionFactory().getCurrentSession().beginTransaction();
+        getSession().beginTransaction();
     }
     
     public static void commitTransaction(){
-        getSessionFactory().getCurrentSession().getTransaction().commit();
+        getSession().getTransaction().commit();
     }
     
-    public static void closeTransaction(){
-        getSessionFactory().getCurrentSession().close();
+    public static void closeSession(){
+        getSession().close();
     }
     
     public static void rollbackTransaction(){
