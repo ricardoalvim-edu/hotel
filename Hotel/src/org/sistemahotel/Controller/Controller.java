@@ -16,19 +16,6 @@ import org.sistemahotel.dao.interfaces.DAO;
  */
 public abstract class Controller<T>{
    
-<<<<<<< HEAD:SistemaHotel/src/org/sistemahotel/Controller/Controller.java
-    protected List<T> lista;
-    IteratorList<T> iterator = null;
-    protected DAO dao;
-    
-    
-   
-    
-   protected abstract T novo(); 
-   
-   public  void salvar(T objeto){
-       dao.saveAndCommit(objeto);
-=======
    protected List<T> lista;
    IteratorList<T> iterator = new IteratorList<>(lista);
    protected DAO dao;
@@ -39,7 +26,6 @@ public abstract class Controller<T>{
        dao.beginTransaction();
        dao.save(objeto);
        dao.closeTransaction();
->>>>>>> 04ef17d1e8e64854723acd4d2876d4c7dddfcc82:Hotel/src/org/sistemahotel/Controller/Controller.java
    }
    
    public void excluir(T objeto){
