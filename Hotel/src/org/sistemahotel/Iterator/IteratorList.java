@@ -20,6 +20,8 @@ public class IteratorList<T> implements Iterator{
     private List<T> lista;
     private int cursor = 0;
     
+    public IteratorList(){   }
+    
     public IteratorList(List<T> lista){
         this.lista = lista;
     }

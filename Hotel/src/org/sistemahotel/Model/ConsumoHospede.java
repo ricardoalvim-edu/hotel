@@ -57,14 +57,17 @@ public class ConsumoHospede implements Serializable {
     @Basic(optional = false)
     @Column(name = "valortotalconsumido")
     private BigDecimal valortotalconsumido;
+    
     @JoinTable(name = "consumohospede_tem_produto", joinColumns = {
         @JoinColumn(name = "idconsumohospede", referencedColumnName = "idconsumohospede")}, inverseJoinColumns = {
         @JoinColumn(name = "idproduto", referencedColumnName = "idproduto")})
     @ManyToMany
-    private Collection<Produto> produtoCollection;
+    private Collection<Produto> produtoConsumidos;
+    
     @JoinColumn(name = "idcadastroentrada", referencedColumnName = "idcadastroentrada")
     @ManyToOne(optional = false)
     private CadastroEntrada idcadastroentrada;
+    
     @JoinColumn(name = "idfuncionario", referencedColumnName = "idfuncionario")
     @ManyToOne(optional = false)
     private Funcionario idfuncionario;
@@ -115,12 +118,12 @@ public class ConsumoHospede implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public Collection<Produto> getProdutoConsumidos() {
+        return produtoConsumidos;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setProdutoConsumidos(Collection<Produto> produtoConsumidos) {
+        this.produtoConsumidos = produtoConsumidos;
     }
 
     public CadastroEntrada getIdcadastroentrada() {

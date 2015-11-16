@@ -1,6 +1,6 @@
 package org.sistemahotel.view.cadastro;
 
-import javax.swing.JOptionPane;
+import java.util.List;
 import org.sistemahotel.Controller.ControllerCategoriaProduto;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.view.JanelaAbstrata;
@@ -10,15 +10,6 @@ import org.sistemahotel.view.JanelaAbstrata;
  * @author GILIARD
  */
 public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
-
-    /**
-     * Creates new form CadastroCategoriaProduto
-     */
-    public CadastroCategoriaProduto() {
-        initComponents();
-        //controle = new ControllerCategoriaProduto();
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,16 +24,16 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
         tfNomeCategoria = new javax.swing.JTextField();
         tfDescricao = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btPrimeiro = new javax.swing.JButton();
+        btAnterior = new javax.swing.JButton();
+        btProximo = new javax.swing.JButton();
+        btUltimo = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btSalvar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CADASTRO CATEGORIA PRODUTO");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -105,21 +96,41 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegar"));
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton4.setText("PRIMEIRO");
-        jButton4.setPreferredSize(new java.awt.Dimension(73, 50));
-        jPanel7.add(jButton4);
+        btPrimeiro.setText("PRIMEIRO");
+        btPrimeiro.setPreferredSize(new java.awt.Dimension(73, 50));
+        btPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrimeiroActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btPrimeiro);
 
-        jButton5.setText("ANTERIOR");
-        jButton5.setPreferredSize(new java.awt.Dimension(73, 50));
-        jPanel7.add(jButton5);
+        btAnterior.setText("ANTERIOR");
+        btAnterior.setPreferredSize(new java.awt.Dimension(73, 50));
+        btAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnteriorActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btAnterior);
 
-        jButton6.setText("PRÓXIMO");
-        jButton6.setPreferredSize(new java.awt.Dimension(73, 50));
-        jPanel7.add(jButton6);
+        btProximo.setText("PRÓXIMO");
+        btProximo.setPreferredSize(new java.awt.Dimension(73, 50));
+        btProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProximoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btProximo);
 
-        jButton7.setText("ÚLTIMO");
-        jButton7.setPreferredSize(new java.awt.Dimension(73, 50));
-        jPanel7.add(jButton7);
+        btUltimo.setText("ÚLTIMO");
+        btUltimo.setPreferredSize(new java.awt.Dimension(73, 50));
+        btUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUltimoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btUltimo);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar"));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0));
@@ -135,10 +146,20 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
 
         btExcluir.setText("EXCLUIR");
         btExcluir.setPreferredSize(new java.awt.Dimension(73, 50));
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
         jPanel6.add(btExcluir);
 
         btNovo.setText("NOVO");
         btNovo.setPreferredSize(new java.awt.Dimension(73, 50));
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
         jPanel6.add(btNovo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,10 +187,39 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        controle = new ControllerCategoriaProduto();
-        controle.salvar(getView());
-        
+        controle.salvar(getView());       
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+        controle.excluir(getView());
+        setView(controle.exibeAtual());
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        // TODO add your handling code here:
+        setView(controle.novo());
+    }//GEN-LAST:event_btNovoActionPerformed
+
+    private void btPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrimeiroActionPerformed
+        // TODO add your handling code here:
+        setView(controle.exibePrimeiro());
+    }//GEN-LAST:event_btPrimeiroActionPerformed
+
+    private void btAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnteriorActionPerformed
+        // TODO add your handling code here:
+        setView(controle.exibeAnterior());
+    }//GEN-LAST:event_btAnteriorActionPerformed
+
+    private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
+        // TODO add your handling code here:
+        setView(controle.exibeProximo());
+    }//GEN-LAST:event_btProximoActionPerformed
+
+    private void btUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUltimoActionPerformed
+        // TODO add your handling code here:
+        setView(controle.exibeUltimo());
+    }//GEN-LAST:event_btUltimoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,13 +257,13 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAnterior;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
+    private javax.swing.JButton btPrimeiro;
+    private javax.swing.JButton btProximo;
     private javax.swing.JButton btSalvar;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -226,20 +276,43 @@ public class CadastroCategoriaProduto extends JanelaAbstrata<CategoriaProduto> {
     private javax.swing.JTextField tfDescricao;
     private javax.swing.JTextField tfNomeCategoria;
     // End of variables declaration//GEN-END:variables
-
+    //este atributo guarda a referência ao objeto que está sendo exibido na tela. Ele é muito importante na estrutura do projeto
+    private CategoriaProduto currentView;
+    
+    /**
+     * Creates new form CadastroCategoriaProduto
+     */
+    public CadastroCategoriaProduto() {
+        initComponents();
+        this.controle = new ControllerCategoriaProduto();
+        currentView = controle.exibePrimeiro();
+        setView(currentView);
+        
+    }
+        
     @Override
     protected void setView(CategoriaProduto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(objeto == null){
+            setView(controle.novo());
+        }else{
+            currentView = objeto;
+            tfNomeCategoria.setText(objeto.getNomeCategoria());
+            tfDescricao.setText(objeto.getDescricao());
+            if(objeto.getIdCategoria() == null){
+                tfCodigoProduto.setText("");
+            }else{
+                tfCodigoProduto.setText(String.valueOf(objeto.getIdCategoria()));
+            }
+        }
     }
 
     @Override
     protected CategoriaProduto getView() {
-        CategoriaProduto cp = new CategoriaProduto();
-        cp.setDescricao(tfDescricao.getText());
-        cp.setNomecategoria(tfNomeCategoria.getText());
+        currentView.setDescricao(tfDescricao.getText());
+        currentView.setNomeCategoria(tfNomeCategoria.getText());
                 
-        return cp;
+        return currentView;
     }
-
+ 
 
 }

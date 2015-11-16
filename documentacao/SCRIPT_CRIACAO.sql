@@ -111,7 +111,6 @@ CREATE TABLE Acomodacao (
 
 CREATE TABLE Categoria_Acomodacao (
   idCategoriaAcomodacao SERIAL PRIMARY KEY,
-  codTipoAcomodacao VARCHAR(10) NOT NULL,
   nomeTipoAcomodacao VARCHAR(50) NOT NULL,
   descricaoTipoAcomodacao VARCHAR(100),
   quantidadeTipoAcomodacao INT,

@@ -50,13 +50,18 @@ public class Produto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "preco")
     private BigDecimal preco;
-    @ManyToMany(mappedBy = "produtoCollection")
+    
+    @ManyToMany(mappedBy = "produtoConsumidos")
     private Collection<ConsumoHospede> consumoHospedeCollection;
+    
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
     @ManyToOne
     private CategoriaProduto idcategoria;
 
     public Produto() {
+        nome = "";
+        descricao = "";
+        preco = new BigDecimal("0");
     }
 
     public Produto(Integer idproduto) {

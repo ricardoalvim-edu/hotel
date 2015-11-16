@@ -12,7 +12,7 @@ import org.sistemahotel.dao.interfaces.*;
  *
  * @author GILIARD
  */
-public class HibernateFactoryDAO extends FactoryDAO {
+public class HibernateFactoryDAO extends DAOFactory {
 
     @Override
     public AcomodacaoDAO getAcomodacaoDAO() {

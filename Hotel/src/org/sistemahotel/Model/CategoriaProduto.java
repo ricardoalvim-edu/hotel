@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CategoriaProduto.findAll", query = "SELECT c FROM CategoriaProduto c"),
-    @NamedQuery(name = "CategoriaProduto.findByIdcategoria", query = "SELECT c FROM CategoriaProduto c WHERE c.idcategoria = :idcategoria"),
-    @NamedQuery(name = "CategoriaProduto.findByNomecategoria", query = "SELECT c FROM CategoriaProduto c WHERE c.nomecategoria = :nomecategoria"),
+    @NamedQuery(name = "CategoriaProduto.findByIdcategoria", query = "SELECT c FROM CategoriaProduto c WHERE c.idCategoria = :idcategoria"),
+    @NamedQuery(name = "CategoriaProduto.findByNomecategoria", query = "SELECT c FROM CategoriaProduto c WHERE c.nomeCategoria = :nomecategoria"),
     @NamedQuery(name = "CategoriaProduto.findByDescricao", query = "SELECT c FROM CategoriaProduto c WHERE c.descricao = :descricao")})
 public class CategoriaProduto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -38,35 +38,38 @@ public class CategoriaProduto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idcategoria")
-    private Integer idcategoria;
+    private Integer idCategoria;
     @Column(name = "nomecategoria")
-    private String nomecategoria;
+    private String nomeCategoria;
     @Column(name = "descricao")
     private String descricao;
     @OneToMany(mappedBy = "idcategoria")
-    private Collection<Produto> produtoCollection;
+    private Collection<Produto> produto;
 
-    public CategoriaProduto() {
+    public CategoriaProduto()
+    {
+        nomeCategoria = "";
+        descricao = "" ;
     }
 
     public CategoriaProduto(Integer idcategoria) {
-        this.idcategoria = idcategoria;
+        this.idCategoria = idcategoria;
     }
 
-    public Integer getIdcategoria() {
-        return idcategoria;
+    public Integer getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdcategoria(Integer idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public String getNomecategoria() {
-        return nomecategoria;
+    public String getNomeCategoria() {
+        return nomeCategoria;
     }
 
-    public void setNomecategoria(String nomecategoria) {
-        this.nomecategoria = nomecategoria;
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
     }
 
     public String getDescricao() {
@@ -78,18 +81,18 @@ public class CategoriaProduto implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public Collection<Produto> getProduto() {
+        return produto;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setProduto(Collection<Produto> produto) {
+        this.produto = produto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcategoria != null ? idcategoria.hashCode() : 0);
+        hash += (idCategoria != null ? idCategoria.hashCode() : 0);
         return hash;
     }
 
@@ -100,7 +103,7 @@ public class CategoriaProduto implements Serializable {
             return false;
         }
         CategoriaProduto other = (CategoriaProduto) object;
-        if ((this.idcategoria == null && other.idcategoria != null) || (this.idcategoria != null && !this.idcategoria.equals(other.idcategoria))) {
+        if ((this.idCategoria == null && other.idCategoria != null) || (this.idCategoria != null && !this.idCategoria.equals(other.idCategoria))) {
             return false;
         }
         return true;
@@ -108,7 +111,7 @@ public class CategoriaProduto implements Serializable {
 
     @Override
     public String toString() {
-        return "org.sistemahotel.Model.CategoriaProduto[ idcategoria=" + idcategoria + " ]";
+        return this.nomeCategoria;
     }
     
 }

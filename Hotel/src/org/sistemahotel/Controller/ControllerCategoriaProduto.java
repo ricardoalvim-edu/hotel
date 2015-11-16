@@ -1,7 +1,7 @@
 package org.sistemahotel.Controller;
 
 import org.sistemahotel.Model.CategoriaProduto;
-import org.sistemahotel.dao.factoryDAO.FactoryDAO;
+import org.sistemahotel.dao.factoryDAO.DAOFactory;
 
 /**
  *
@@ -15,7 +15,7 @@ public class ControllerCategoriaProduto extends Controller<CategoriaProduto>{
     }
     
     public ControllerCategoriaProduto() {
-        this.dao = FactoryDAO.getFactoryDAO().getCategoriaProdutoDAO();
+        this.dao = DAOFactory.getDAOFactory().getCategoriaProdutoDAO();
         this.lista = dao.listAll();
     }
 }

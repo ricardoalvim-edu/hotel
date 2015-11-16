@@ -52,35 +52,43 @@ public class Hospede implements Serializable {
     @Basic(optional = false)
     @Column(name = "idhospede")
     private Integer idhospede;
+    
     @Column(name = "nomehospede")
     private String nomehospede;
+    
     @Column(name = "rghospede")
     private String rghospede;
+    
     @Column(name = "rgemissorhospede")
     private String rgemissorhospede;
+    
     @Column(name = "cpfhospede")
     private String cpfhospede;
+    
     @Column(name = "datanascimentohospede")
     @Temporal(TemporalType.DATE)
-    private Date datanascimentohospede;
+    private Date dataNascimento;
+    
     @Column(name = "filiacaohospede")
-    private String filiacaohospede;
+    private String filiacao;
+    
     @Column(name = "passaportehospedeestrangeiro")
-    private String passaportehospedeestrangeiro;
+    private String passaporte;
+    
     @JoinTable(name = "hospede_tem_telefone", joinColumns = {
         @JoinColumn(name = "idhospede", referencedColumnName = "idhospede")}, inverseJoinColumns = {
         @JoinColumn(name = "idtelefone", referencedColumnName = "idtelefone")})
     @ManyToMany
     private Collection<Telefone> telefoneCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<CadastroEntrada> cadastroEntradaCollection;
+    private Collection<CadastroEntrada> cadastroEntrada;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<Acompanhante> acompanhanteCollection;
+    private Collection<Acompanhante> acompanhante;
     @JoinColumn(name = "idendereco", referencedColumnName = "idendereco")
     @ManyToOne
     private Endereco idendereco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<Reserva> reservaCollection;
+    private Collection<Reserva> reserva;
 
     public Hospede() {
     }
@@ -129,28 +137,28 @@ public class Hospede implements Serializable {
         this.cpfhospede = cpfhospede;
     }
 
-    public Date getDatanascimentohospede() {
-        return datanascimentohospede;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDatanascimentohospede(Date datanascimentohospede) {
-        this.datanascimentohospede = datanascimentohospede;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
-    public String getFiliacaohospede() {
-        return filiacaohospede;
+    public String getFiliacao() {
+        return filiacao;
     }
 
-    public void setFiliacaohospede(String filiacaohospede) {
-        this.filiacaohospede = filiacaohospede;
+    public void setFiliacao(String filiacao) {
+        this.filiacao = filiacao;
     }
 
-    public String getPassaportehospedeestrangeiro() {
-        return passaportehospedeestrangeiro;
+    public String getPassaporte() {
+        return passaporte;
     }
 
-    public void setPassaportehospedeestrangeiro(String passaportehospedeestrangeiro) {
-        this.passaportehospedeestrangeiro = passaportehospedeestrangeiro;
+    public void setPassaporte(String passaporte) {
+        this.passaporte = passaporte;
     }
 
     @XmlTransient
@@ -163,21 +171,21 @@ public class Hospede implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntradaCollection() {
-        return cadastroEntradaCollection;
+    public Collection<CadastroEntrada> getCadastroEntrada() {
+        return cadastroEntrada;
     }
 
-    public void setCadastroEntradaCollection(Collection<CadastroEntrada> cadastroEntradaCollection) {
-        this.cadastroEntradaCollection = cadastroEntradaCollection;
+    public void setCadastroEntrada(Collection<CadastroEntrada> cadastroEntrada) {
+        this.cadastroEntrada = cadastroEntrada;
     }
 
     @XmlTransient
-    public Collection<Acompanhante> getAcompanhanteCollection() {
-        return acompanhanteCollection;
+    public Collection<Acompanhante> getAcompanhante() {
+        return acompanhante;
     }
 
-    public void setAcompanhanteCollection(Collection<Acompanhante> acompanhanteCollection) {
-        this.acompanhanteCollection = acompanhanteCollection;
+    public void setAcompanhante(Collection<Acompanhante> acompanhante) {
+        this.acompanhante = acompanhante;
     }
 
     public Endereco getIdendereco() {
@@ -189,12 +197,12 @@ public class Hospede implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Reserva> getReservaCollection() {
-        return reservaCollection;
+    public Collection<Reserva> getReserva() {
+        return reserva;
     }
 
-    public void setReservaCollection(Collection<Reserva> reservaCollection) {
-        this.reservaCollection = reservaCollection;
+    public void setReserva(Collection<Reserva> reserva) {
+        this.reserva = reserva;
     }
 
     @Override

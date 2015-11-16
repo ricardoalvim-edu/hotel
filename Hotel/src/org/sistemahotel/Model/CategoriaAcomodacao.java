@@ -31,142 +31,146 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CategoriaAcomodacao.findAll", query = "SELECT c FROM CategoriaAcomodacao c"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByIdcategoriaacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.idcategoriaacomodacao = :idcategoriaacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByCodtipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.codtipoacomodacao = :codtipoacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByNometipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.nometipoacomodacao = :nometipoacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByDescricaotipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.descricaotipoacomodacao = :descricaotipoacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadetipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.quantidadetipoacomodacao = :quantidadetipoacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByPrecodiariatipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.precodiariatipoacomodacao = :precodiariatipoacomodacao"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadeadultos", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.quantidadeadultos = :quantidadeadultos"),
-    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadecriancas", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.quantidadecriancas = :quantidadecriancas")})
+    @NamedQuery(name = "CategoriaAcomodacao.findById", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.idCategoria = :id"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByNomeCategoria", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.nomeCategoria = :nome"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByDescricaotipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.descricaoCategoria = :descricao"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadetipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.qtdAcomodacoes = :quantidade"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByPrecodiariatipoacomodacao", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.precoDiaria = :preco"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadeadultos", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.qtdAdultos = :quantidade"),
+    @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadecriancas", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.qtdCriancas = :quantidadecriancas")
+})
 public class CategoriaAcomodacao implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idcategoriaacomodacao")
-    private Integer idcategoriaacomodacao;
-    @Basic(optional = false)
-    @Column(name = "codtipoacomodacao")
-    private String codtipoacomodacao;
+    private Integer idCategoria;
+    
     @Basic(optional = false)
     @Column(name = "nometipoacomodacao")
-    private String nometipoacomodacao;
+    private String nomeCategoria;
+    
     @Column(name = "descricaotipoacomodacao")
-    private String descricaotipoacomodacao;
+    private String descricaoCategoria;
+    
     @Column(name = "quantidadetipoacomodacao")
-    private Integer quantidadetipoacomodacao;
+    private Integer qtdAcomodacoes;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precodiariatipoacomodacao")
-    private BigDecimal precodiariatipoacomodacao;
+    private BigDecimal precoDiaria;
+    
     @Column(name = "quantidadeadultos")
-    private Integer quantidadeadultos;
+    private Integer qtdAdultos;
+    
     @Column(name = "quantidadecriancas")
-    private Integer quantidadecriancas;
+    private Integer qtdCriancas;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAcomodacao")
+    private Collection<Acomodacao> acomodacao;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcategoriaacomodacao")
-    private Collection<Acomodacao> acomodacaoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcategoriaacomodacao")
-    private Collection<Reserva> reservaCollection;
+    private Collection<Reserva> reserva;
 
-    public CategoriaAcomodacao() {
+    public CategoriaAcomodacao() { 
+        nomeCategoria = "";
+        descricaoCategoria = "";
+        qtdAcomodacoes = 0;
+        qtdAdultos = 0;
+        qtdCriancas = 0;
+        precoDiaria = new BigDecimal("0");
+        
     }
 
     public CategoriaAcomodacao(Integer idcategoriaacomodacao) {
-        this.idcategoriaacomodacao = idcategoriaacomodacao;
+        this.idCategoria = idcategoriaacomodacao;
     }
 
-    public CategoriaAcomodacao(Integer idcategoriaacomodacao, String codtipoacomodacao, String nometipoacomodacao) {
-        this.idcategoriaacomodacao = idcategoriaacomodacao;
-        this.codtipoacomodacao = codtipoacomodacao;
-        this.nometipoacomodacao = nometipoacomodacao;
+    public CategoriaAcomodacao(Integer idcategoriaacomodacao, String nometipoacomodacao) {
+        this.idCategoria = idcategoriaacomodacao;
+        this.nomeCategoria = nometipoacomodacao;
     }
 
-    public Integer getIdcategoriaacomodacao() {
-        return idcategoriaacomodacao;
+    public Integer getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdcategoriaacomodacao(Integer idcategoriaacomodacao) {
-        this.idcategoriaacomodacao = idcategoriaacomodacao;
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public String getCodtipoacomodacao() {
-        return codtipoacomodacao;
+    public String getNomeCategoria() {
+        return nomeCategoria;
     }
 
-    public void setCodtipoacomodacao(String codtipoacomodacao) {
-        this.codtipoacomodacao = codtipoacomodacao;
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
     }
 
-    public String getNometipoacomodacao() {
-        return nometipoacomodacao;
+    public String getDescricaoCategoria() {
+        return descricaoCategoria;
     }
 
-    public void setNometipoacomodacao(String nometipoacomodacao) {
-        this.nometipoacomodacao = nometipoacomodacao;
+    public void setDescricaoCategoria(String descricaotipoacomodacao) {
+        this.descricaoCategoria = descricaotipoacomodacao;
     }
 
-    public String getDescricaotipoacomodacao() {
-        return descricaotipoacomodacao;
+    public Integer getQtdAcomodacoes() {
+        return qtdAcomodacoes;
     }
 
-    public void setDescricaotipoacomodacao(String descricaotipoacomodacao) {
-        this.descricaotipoacomodacao = descricaotipoacomodacao;
+    public void setQtdAcomodacoes(Integer qtdAcomodacoes) {
+        this.qtdAcomodacoes = qtdAcomodacoes;
     }
 
-    public Integer getQuantidadetipoacomodacao() {
-        return quantidadetipoacomodacao;
+    public BigDecimal getPrecoDiaria() {
+        return precoDiaria;
     }
 
-    public void setQuantidadetipoacomodacao(Integer quantidadetipoacomodacao) {
-        this.quantidadetipoacomodacao = quantidadetipoacomodacao;
+    public void setPrecoDiaria(BigDecimal precoDiaria) {
+        this.precoDiaria = precoDiaria;
     }
 
-    public BigDecimal getPrecodiariatipoacomodacao() {
-        return precodiariatipoacomodacao;
+    public Integer getQtdAdultos() {
+        return qtdAdultos;
     }
 
-    public void setPrecodiariatipoacomodacao(BigDecimal precodiariatipoacomodacao) {
-        this.precodiariatipoacomodacao = precodiariatipoacomodacao;
+    public void setQtdAdultos(Integer qtdAdultos) {
+        this.qtdAdultos = qtdAdultos;
     }
 
-    public Integer getQuantidadeadultos() {
-        return quantidadeadultos;
+    public Integer getQtdCriancas() {
+        return qtdCriancas;
     }
 
-    public void setQuantidadeadultos(Integer quantidadeadultos) {
-        this.quantidadeadultos = quantidadeadultos;
-    }
-
-    public Integer getQuantidadecriancas() {
-        return quantidadecriancas;
-    }
-
-    public void setQuantidadecriancas(Integer quantidadecriancas) {
-        this.quantidadecriancas = quantidadecriancas;
+    public void setQtdCriancas(Integer quantidadecriancas) {
+        this.qtdCriancas = quantidadecriancas;
     }
 
     @XmlTransient
-    public Collection<Acomodacao> getAcomodacaoCollection() {
-        return acomodacaoCollection;
+    public Collection<Acomodacao> getAcomodacao() {
+        return acomodacao;
     }
 
-    public void setAcomodacaoCollection(Collection<Acomodacao> acomodacaoCollection) {
-        this.acomodacaoCollection = acomodacaoCollection;
+    public void setAcomodacao(Collection<Acomodacao> acomodacao) {
+        this.acomodacao = acomodacao;
     }
 
     @XmlTransient
-    public Collection<Reserva> getReservaCollection() {
-        return reservaCollection;
+    public Collection<Reserva> getReserva() {
+        return reserva;
     }
 
-    public void setReservaCollection(Collection<Reserva> reservaCollection) {
-        this.reservaCollection = reservaCollection;
+    public void setReserva(Collection<Reserva> reserva) {
+        this.reserva = reserva;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcategoriaacomodacao != null ? idcategoriaacomodacao.hashCode() : 0);
+        hash += (idCategoria != null ? idCategoria.hashCode() : 0);
         return hash;
     }
 
@@ -177,7 +181,7 @@ public class CategoriaAcomodacao implements Serializable {
             return false;
         }
         CategoriaAcomodacao other = (CategoriaAcomodacao) object;
-        if ((this.idcategoriaacomodacao == null && other.idcategoriaacomodacao != null) || (this.idcategoriaacomodacao != null && !this.idcategoriaacomodacao.equals(other.idcategoriaacomodacao))) {
+        if ((this.idCategoria == null && other.idCategoria != null) || (this.idCategoria != null && !this.idCategoria.equals(other.idCategoria))) {
             return false;
         }
         return true;
@@ -185,7 +189,7 @@ public class CategoriaAcomodacao implements Serializable {
 
     @Override
     public String toString() {
-        return "org.sistemahotel.Model.CategoriaAcomodacao[ idcategoriaacomodacao=" + idcategoriaacomodacao + " ]";
+        return "org.sistemahotel.Model.CategoriaAcomodacao[ idcategoriaacomodacao=" + idCategoria + " ]";
     }
     
 }

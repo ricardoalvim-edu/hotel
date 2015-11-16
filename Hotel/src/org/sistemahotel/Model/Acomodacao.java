@@ -32,84 +32,82 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Acomodacao.findAll", query = "SELECT a FROM Acomodacao a"),
-    @NamedQuery(name = "Acomodacao.findByIdacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.idacomodacao = :idacomodacao"),
-    @NamedQuery(name = "Acomodacao.findByAndaracomodacao", query = "SELECT a FROM Acomodacao a WHERE a.andaracomodacao = :andaracomodacao"),
-    @NamedQuery(name = "Acomodacao.findByNumeroacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.numeroacomodacao = :numeroacomodacao")})
+    @NamedQuery(name = "Acomodacao.findByIdacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.idAcomodacao = :idacomodacao"),
+    @NamedQuery(name = "Acomodacao.findByAndaracomodacao", query = "SELECT a FROM Acomodacao a WHERE a.andar = :andaracomodacao"),
+    @NamedQuery(name = "Acomodacao.findByNumeroacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.numero = :numeroacomodacao")})
 public class Acomodacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idacomodacao")
-    private Integer idacomodacao;
+    @Column(name = "idAcomodacao")
+    private Integer idAcomodacao;
     @Column(name = "andaracomodacao")
-    private String andaracomodacao;
+    private String andar;
     @Basic(optional = false)
     @Column(name = "numeroacomodacao")
-    private String numeroacomodacao;
+    private String numero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idacomodacao")
-    private Collection<CadastroEntrada> cadastroEntradaCollection;
+    private Collection<CadastroEntrada> cadastroEntrada;
     @JoinColumn(name = "idcategoriaacomodacao", referencedColumnName = "idcategoriaacomodacao")
     @ManyToOne(optional = false)
-    private CategoriaAcomodacao idcategoriaacomodacao;
+    private CategoriaAcomodacao idCategoria;
 
     public Acomodacao() {
+        this.andar = "";
+        this.numero = "";
     }
 
-    public Acomodacao(Integer idacomodacao) {
-        this.idacomodacao = idacomodacao;
+    public Acomodacao(String andarAcomodacao, String numeroAcomodacao) {
+        this.andar = andarAcomodacao;
+        this.numero = numeroAcomodacao;
     }
 
-    public Acomodacao(Integer idacomodacao, String numeroacomodacao) {
-        this.idacomodacao = idacomodacao;
-        this.numeroacomodacao = numeroacomodacao;
+    public Integer getIdAcomodacao() {
+        return idAcomodacao;
     }
 
-    public Integer getIdacomodacao() {
-        return idacomodacao;
+    public void setIdAcomodacao(Integer idAcomodacao) {
+        this.idAcomodacao = idAcomodacao;
     }
 
-    public void setIdacomodacao(Integer idacomodacao) {
-        this.idacomodacao = idacomodacao;
+    public String getAndar() {
+        return andar;
     }
 
-    public String getAndaracomodacao() {
-        return andaracomodacao;
+    public void setAndar(String andar) {
+        this.andar = andar;
     }
 
-    public void setAndaracomodacao(String andaracomodacao) {
-        this.andaracomodacao = andaracomodacao;
+    public String getNumero() {
+        return numero;
     }
 
-    public String getNumeroacomodacao() {
-        return numeroacomodacao;
-    }
-
-    public void setNumeroacomodacao(String numeroacomodacao) {
-        this.numeroacomodacao = numeroacomodacao;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntradaCollection() {
-        return cadastroEntradaCollection;
+    public Collection<CadastroEntrada> getCadastroEntrada() {
+        return cadastroEntrada;
     }
 
-    public void setCadastroEntradaCollection(Collection<CadastroEntrada> cadastroEntradaCollection) {
-        this.cadastroEntradaCollection = cadastroEntradaCollection;
+    public void setCadastroEntrada(Collection<CadastroEntrada> cadastroEntrada) {
+        this.cadastroEntrada = cadastroEntrada;
     }
 
-    public CategoriaAcomodacao getIdcategoriaacomodacao() {
-        return idcategoriaacomodacao;
+    public CategoriaAcomodacao getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdcategoriaacomodacao(CategoriaAcomodacao idcategoriaacomodacao) {
-        this.idcategoriaacomodacao = idcategoriaacomodacao;
+    public void setIdCategoria(CategoriaAcomodacao idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idacomodacao != null ? idacomodacao.hashCode() : 0);
+        hash += (idAcomodacao != null ? idAcomodacao.hashCode() : 0);
         return hash;
     }
 
@@ -120,7 +118,7 @@ public class Acomodacao implements Serializable {
             return false;
         }
         Acomodacao other = (Acomodacao) object;
-        if ((this.idacomodacao == null && other.idacomodacao != null) || (this.idacomodacao != null && !this.idacomodacao.equals(other.idacomodacao))) {
+        if ((this.idAcomodacao == null && other.idAcomodacao != null) || (this.idAcomodacao != null && !this.idAcomodacao.equals(other.idAcomodacao))) {
             return false;
         }
         return true;
@@ -128,7 +126,7 @@ public class Acomodacao implements Serializable {
 
     @Override
     public String toString() {
-        return "org.sistemahotel.Model.Acomodacao[ idacomodacao=" + idacomodacao + " ]";
+        return "org.sistemahotel.Model.Acomodacao[ idacomodacao=" + idAcomodacao + " ]";
     }
     
 }
