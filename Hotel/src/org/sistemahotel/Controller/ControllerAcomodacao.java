@@ -8,7 +8,6 @@ package org.sistemahotel.Controller;
 import java.util.List;
 import org.sistemahotel.Model.Acomodacao;
 import org.sistemahotel.Model.CategoriaAcomodacao;
-import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.dao.factoryDAO.DAOFactory;
 import org.sistemahotel.dao.interfaces.CategoriaAcomodacaoDAO;
 
