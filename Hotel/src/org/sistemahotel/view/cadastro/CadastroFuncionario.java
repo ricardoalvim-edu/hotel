@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import org.sistemahotel.Controller.ControllerFuncionario;
 import org.sistemahotel.Model.Funcionario;
 import org.sistemahotel.view.JanelaAbstrata;
 
@@ -13,14 +14,6 @@ import org.sistemahotel.view.JanelaAbstrata;
  * @author GILIARD
  */
 public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
-
-    /**
-     * Creates new form CadastroFuncionario
-     */
-    public CadastroFuncionario() {
-        initComponents();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -483,6 +476,14 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
     private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Creates new form CadastroFuncionario
+     */
+    public CadastroFuncionario() {
+        initComponents();
+        this.controle = new ControllerFuncionario();
+    }
+    
     @Override
     protected void setView(Funcionario objeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
