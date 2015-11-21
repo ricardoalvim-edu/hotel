@@ -3,7 +3,7 @@
 *.bak
 *.jpg
 *.db
-Hotel/src/hibernate.cfg.xml
+
 /SistemaHotel/nbproject/private/
 /SistemaHotel/build/
 /CaelumThreads/nbproject/private/

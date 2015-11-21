@@ -6,6 +6,7 @@ import org.sistemahotel.Controller.Controller;
 /**
  *
  * @author GILIARD
+ * @param <T>
  */
 public abstract class JanelaAbstrata<T> extends JFrame {
    
