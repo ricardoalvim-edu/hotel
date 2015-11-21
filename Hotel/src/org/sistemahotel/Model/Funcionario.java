@@ -5,6 +5,8 @@
  */
 package org.sistemahotel.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -24,6 +26,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -42,6 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.documentoidentificacao = :documentoidentificacao"),
     @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.idendereco = :idendereco")})
 public class Funcionario implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,7 +84,9 @@ public class Funcionario implements Serializable {
     }
 
     public void setIdfuncionario(Integer idfuncionario) {
+        Integer oldIdfuncionario = this.idfuncionario;
         this.idfuncionario = idfuncionario;
+        changeSupport.firePropertyChange("idfuncionario", oldIdfuncionario, idfuncionario);
     }
 
     public String getNomefuncionario() {
@@ -87,7 +94,9 @@ public class Funcionario implements Serializable {
     }
 
     public void setNomefuncionario(String nomefuncionario) {
+        String oldNomefuncionario = this.nomefuncionario;
         this.nomefuncionario = nomefuncionario;
+        changeSupport.firePropertyChange("nomefuncionario", oldNomefuncionario, nomefuncionario);
     }
 
     public Date getDatanascimento() {
@@ -95,7 +104,9 @@ public class Funcionario implements Serializable {
     }
 
     public void setDatanascimento(Date datanascimento) {
+        Date oldDatanascimento = this.datanascimento;
         this.datanascimento = datanascimento;
+        changeSupport.firePropertyChange("datanascimento", oldDatanascimento, datanascimento);
     }
 
     public String getDocumentoidentificacao() {
@@ -103,7 +114,9 @@ public class Funcionario implements Serializable {
     }
 
     public void setDocumentoidentificacao(String documentoidentificacao) {
+        String oldDocumentoidentificacao = this.documentoidentificacao;
         this.documentoidentificacao = documentoidentificacao;
+        changeSupport.firePropertyChange("documentoidentificacao", oldDocumentoidentificacao, documentoidentificacao);
     }
 
     public Integer getIdendereco() {
@@ -111,7 +124,9 @@ public class Funcionario implements Serializable {
     }
 
     public void setIdendereco(Integer idendereco) {
+        Integer oldIdendereco = this.idendereco;
         this.idendereco = idendereco;
+        changeSupport.firePropertyChange("idendereco", oldIdendereco, idendereco);
     }
 
     @XmlTransient
@@ -164,6 +179,14 @@ public class Funcionario implements Serializable {
     @Override
     public String toString() {
         return "org.sistemahotel.Model.Funcionario[ idfuncionario=" + idfuncionario + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

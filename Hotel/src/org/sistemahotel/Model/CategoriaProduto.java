@@ -5,6 +5,8 @@
  */
 package org.sistemahotel.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -17,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -33,6 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CategoriaProduto.findByNomecategoria", query = "SELECT c FROM CategoriaProduto c WHERE c.nomeCategoria = :nomecategoria"),
     @NamedQuery(name = "CategoriaProduto.findByDescricao", query = "SELECT c FROM CategoriaProduto c WHERE c.descricao = :descricao")})
 public class CategoriaProduto implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +66,9 @@ public class CategoriaProduto implements Serializable {
     }
 
     public void setIdCategoria(Integer idCategoria) {
+        Integer oldIdCategoria = this.idCategoria;
         this.idCategoria = idCategoria;
+        changeSupport.firePropertyChange("idCategoria", oldIdCategoria, idCategoria);
     }
 
     public String getNomeCategoria() {
@@ -69,7 +76,9 @@ public class CategoriaProduto implements Serializable {
     }
 
     public void setNomeCategoria(String nomeCategoria) {
+        String oldNomeCategoria = this.nomeCategoria;
         this.nomeCategoria = nomeCategoria;
+        changeSupport.firePropertyChange("nomeCategoria", oldNomeCategoria, nomeCategoria);
     }
 
     public String getDescricao() {
@@ -77,7 +86,9 @@ public class CategoriaProduto implements Serializable {
     }
 
     public void setDescricao(String descricao) {
+        String oldDescricao = this.descricao;
         this.descricao = descricao;
+        changeSupport.firePropertyChange("descricao", oldDescricao, descricao);
     }
 
     @XmlTransient
@@ -112,6 +123,14 @@ public class CategoriaProduto implements Serializable {
     @Override
     public String toString() {
         return this.nomeCategoria;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

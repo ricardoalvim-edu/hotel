@@ -394,8 +394,6 @@ public class CadastroCategoriaAcomodacao extends JanelaAbstrata<CategoriaAcomoda
         currentView.setQtdAdultos(Integer.parseInt(tfAdultos.getText()));
         currentView.setQtdCriancas(Integer.parseInt(tfCriancas.getText()));
         currentView.setQtdAcomodacoes(Integer.parseInt(tfQuantidade.getText()));
-        
-        
         return currentView;
     }
 

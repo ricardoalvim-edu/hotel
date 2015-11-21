@@ -5,6 +5,8 @@
  */
 package org.sistemahotel.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -19,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,6 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadecriancas", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.qtdCriancas = :quantidadecriancas")
 })
 public class CategoriaAcomodacao implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -98,7 +103,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setIdCategoria(Integer idCategoria) {
+        Integer oldIdCategoria = this.idCategoria;
         this.idCategoria = idCategoria;
+        changeSupport.firePropertyChange("idCategoria", oldIdCategoria, idCategoria);
     }
 
     public String getNomeCategoria() {
@@ -106,7 +113,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setNomeCategoria(String nomeCategoria) {
+        String oldNomeCategoria = this.nomeCategoria;
         this.nomeCategoria = nomeCategoria;
+        changeSupport.firePropertyChange("nomeCategoria", oldNomeCategoria, nomeCategoria);
     }
 
     public String getDescricaoCategoria() {
@@ -114,7 +123,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setDescricaoCategoria(String descricaotipoacomodacao) {
+        String oldDescricaotipoacomodacao = this.descricaoCategoria;
         this.descricaoCategoria = descricaotipoacomodacao;
+        changeSupport.firePropertyChange("descricaoCategoria", oldDescricaotipoacomodacao, descricaotipoacomodacao);
     }
 
     public Integer getQtdAcomodacoes() {
@@ -122,7 +133,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setQtdAcomodacoes(Integer qtdAcomodacoes) {
+        Integer oldQtdAcomodacoes = this.qtdAcomodacoes;
         this.qtdAcomodacoes = qtdAcomodacoes;
+        changeSupport.firePropertyChange("qtdAcomodacoes", oldQtdAcomodacoes, qtdAcomodacoes);
     }
 
     public BigDecimal getPrecoDiaria() {
@@ -130,7 +143,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setPrecoDiaria(BigDecimal precoDiaria) {
+        BigDecimal oldPrecoDiaria = this.precoDiaria;
         this.precoDiaria = precoDiaria;
+        changeSupport.firePropertyChange("precoDiaria", oldPrecoDiaria, precoDiaria);
     }
 
     public Integer getQtdAdultos() {
@@ -138,7 +153,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setQtdAdultos(Integer qtdAdultos) {
+        Integer oldQtdAdultos = this.qtdAdultos;
         this.qtdAdultos = qtdAdultos;
+        changeSupport.firePropertyChange("qtdAdultos", oldQtdAdultos, qtdAdultos);
     }
 
     public Integer getQtdCriancas() {
@@ -146,7 +163,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setQtdCriancas(Integer quantidadecriancas) {
+        Integer oldQuantidadecriancas = this.qtdCriancas;
         this.qtdCriancas = quantidadecriancas;
+        changeSupport.firePropertyChange("qtdCriancas", oldQuantidadecriancas, quantidadecriancas);
     }
 
     @XmlTransient
@@ -190,6 +209,14 @@ public class CategoriaAcomodacao implements Serializable {
     @Override
     public String toString() {
         return "org.sistemahotel.Model.CategoriaAcomodacao[ idcategoriaacomodacao=" + idCategoria + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

@@ -42,9 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hospede.findByRghospede", query = "SELECT h FROM Hospede h WHERE h.rghospede = :rghospede"),
     @NamedQuery(name = "Hospede.findByRgemissorhospede", query = "SELECT h FROM Hospede h WHERE h.rgemissorhospede = :rgemissorhospede"),
     @NamedQuery(name = "Hospede.findByCpfhospede", query = "SELECT h FROM Hospede h WHERE h.cpfhospede = :cpfhospede"),
-    @NamedQuery(name = "Hospede.findByDatanascimentohospede", query = "SELECT h FROM Hospede h WHERE h.datanascimentohospede = :datanascimentohospede"),
-    @NamedQuery(name = "Hospede.findByFiliacaohospede", query = "SELECT h FROM Hospede h WHERE h.filiacaohospede = :filiacaohospede"),
-    @NamedQuery(name = "Hospede.findByPassaportehospedeestrangeiro", query = "SELECT h FROM Hospede h WHERE h.passaportehospedeestrangeiro = :passaportehospedeestrangeiro")})
+    @NamedQuery(name = "Hospede.findByDatanascimentohospede", query = "SELECT h FROM Hospede h WHERE h.dataNascimento = :datanascimentohospede"),
+    @NamedQuery(name = "Hospede.findByFiliacaohospede", query = "SELECT h FROM Hospede h WHERE h.filiacao = :filiacaohospede"),
+    @NamedQuery(name = "Hospede.findByPassaportehospedeestrangeiro", query = "SELECT h FROM Hospede h WHERE h.passaporte = :passaportehospedeestrangeiro")})
 public class Hospede implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

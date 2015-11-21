@@ -6,6 +6,7 @@
 package org.sistemahotel.Controller;
 
 import java.util.List;
+import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.dao.interfaces.DAO;
 
@@ -49,7 +50,7 @@ public abstract class Controller<T>{
        dao.beginTransaction();
        dao.delete(objeto);
        dao.commitTransaction();
-       
+       dao.closeTransaction();
        updateCursor();
    }   
    
@@ -173,6 +174,10 @@ public abstract class Controller<T>{
         Acho que não é uma boa prática deixar esse método aqui, massss.......
     */
     public List<CategoriaProduto> getListaCategoriaProduto() {
+        return null;
+    }
+    
+    public List<CategoriaAcomodacao> getListaCategoriaAcomodacao() {
         return null;
     }
 }

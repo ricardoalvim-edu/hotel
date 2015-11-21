@@ -21,7 +21,9 @@ public final class MyTableModel extends AbstractTableModel{
     private String[] colunas = null;
     private boolean[] colEditaveis;
     
-    public MyTableModel(){}
+    public MyTableModel(){
+    
+    }
     
     public MyTableModel(List linhas){
        this.setLinhas(linhas);

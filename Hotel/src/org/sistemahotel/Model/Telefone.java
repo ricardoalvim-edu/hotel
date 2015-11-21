@@ -5,6 +5,8 @@
  */
 package org.sistemahotel.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Telefone.findByDdd", query = "SELECT t FROM Telefone t WHERE t.ddd = :ddd"),
     @NamedQuery(name = "Telefone.findByDdi", query = "SELECT t FROM Telefone t WHERE t.ddi = :ddi")})
 public class Telefone implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,7 +68,9 @@ public class Telefone implements Serializable {
     }
 
     public void setIdtelefone(Integer idtelefone) {
+        Integer oldIdtelefone = this.idtelefone;
         this.idtelefone = idtelefone;
+        changeSupport.firePropertyChange("idtelefone", oldIdtelefone, idtelefone);
     }
 
     public String getTelefone() {
@@ -71,7 +78,9 @@ public class Telefone implements Serializable {
     }
 
     public void setTelefone(String telefone) {
+        String oldTelefone = this.telefone;
         this.telefone = telefone;
+        changeSupport.firePropertyChange("telefone", oldTelefone, telefone);
     }
 
     public String getDdd() {
@@ -79,7 +88,9 @@ public class Telefone implements Serializable {
     }
 
     public void setDdd(String ddd) {
+        String oldDdd = this.ddd;
         this.ddd = ddd;
+        changeSupport.firePropertyChange("ddd", oldDdd, ddd);
     }
 
     public String getDdi() {
@@ -87,7 +98,9 @@ public class Telefone implements Serializable {
     }
 
     public void setDdi(String ddi) {
+        String oldDdi = this.ddi;
         this.ddi = ddi;
+        changeSupport.firePropertyChange("ddi", oldDdi, ddi);
     }
 
     @XmlTransient
@@ -131,6 +144,14 @@ public class Telefone implements Serializable {
     @Override
     public String toString() {
         return "org.sistemahotel.Model.Telefone[ idtelefone=" + idtelefone + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
