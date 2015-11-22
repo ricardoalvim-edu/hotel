@@ -6,7 +6,7 @@
 package org.sistemahotel.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hospede.findByIdhospede", query = "SELECT h FROM Hospede h WHERE h.idhospede = :idhospede"),
     @NamedQuery(name = "Hospede.findByNomehospede", query = "SELECT h FROM Hospede h WHERE h.nomehospede = :nomehospede"),
     @NamedQuery(name = "Hospede.findByRghospede", query = "SELECT h FROM Hospede h WHERE h.rghospede = :rghospede"),
-    @NamedQuery(name = "Hospede.findByRgemissorhospede", query = "SELECT h FROM Hospede h WHERE h.rgemissorhospede = :rgemissorhospede"),
+    @NamedQuery(name = "Hospede.findByRgemissorhospede", query = "SELECT h FROM Hospede h WHERE h.rgEmissor = :rgEmissor"),
     @NamedQuery(name = "Hospede.findByCpfhospede", query = "SELECT h FROM Hospede h WHERE h.cpfhospede = :cpfhospede"),
     @NamedQuery(name = "Hospede.findByDatanascimentohospede", query = "SELECT h FROM Hospede h WHERE h.dataNascimento = :datanascimentohospede"),
     @NamedQuery(name = "Hospede.findByFiliacaohospede", query = "SELECT h FROM Hospede h WHERE h.filiacao = :filiacaohospede"),
@@ -60,14 +60,18 @@ public class Hospede implements Serializable {
     private String rghospede;
     
     @Column(name = "rgemissorhospede")
-    private String rgemissorhospede;
+    private String rgEmissor;
     
     @Column(name = "cpfhospede")
     private String cpfhospede;
     
+    /*
+        Mudei o tipo de dado da coluna correspondete no postgres. Lembrar de executar o comando
+        
+        ALTER TABLE hospede ALTER COLUMN datanascimentohospede TYPE CHAR(10);
+    */
     @Column(name = "datanascimentohospede")
-    @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    private String dataNascimento;
     
     @Column(name = "filiacaohospede")
     private String filiacao;
@@ -75,22 +79,30 @@ public class Hospede implements Serializable {
     @Column(name = "passaportehospedeestrangeiro")
     private String passaporte;
     
+    @Column(name = "paisorigem")
+    private String paisOrigem;
+    
     @JoinTable(name = "hospede_tem_telefone", joinColumns = {
         @JoinColumn(name = "idhospede", referencedColumnName = "idhospede")}, inverseJoinColumns = {
         @JoinColumn(name = "idtelefone", referencedColumnName = "idtelefone")})
     @ManyToMany
-    private Collection<Telefone> telefoneCollection;
+    private List<Telefone> telefoneList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<CadastroEntrada> cadastroEntrada;
+    private List<CadastroEntrada> cadastroEntrada;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<Acompanhante> acompanhante;
+    private List<Acompanhante> acompanhante;
+    
     @JoinColumn(name = "idendereco", referencedColumnName = "idendereco")
     @ManyToOne
-    private Endereco idendereco;
+    private Endereco endereco;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhospede")
-    private Collection<Reserva> reserva;
+    private List<Reserva> reserva;
 
     public Hospede() {
+        
     }
 
     public Hospede(Integer idhospede) {
@@ -121,12 +133,12 @@ public class Hospede implements Serializable {
         this.rghospede = rghospede;
     }
 
-    public String getRgemissorhospede() {
-        return rgemissorhospede;
+    public String getRgEmissor() {
+        return rgEmissor;
     }
 
-    public void setRgemissorhospede(String rgemissorhospede) {
-        this.rgemissorhospede = rgemissorhospede;
+    public void setRgEmissor(String rgEmissor) {
+        this.rgEmissor = rgEmissor;
     }
 
     public String getCpfhospede() {
@@ -137,11 +149,11 @@ public class Hospede implements Serializable {
         this.cpfhospede = cpfhospede;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -160,48 +172,56 @@ public class Hospede implements Serializable {
     public void setPassaporte(String passaporte) {
         this.passaporte = passaporte;
     }
-
-    @XmlTransient
-    public Collection<Telefone> getTelefoneCollection() {
-        return telefoneCollection;
+    
+    public String getPaisOrigem() {
+        return paisOrigem;
     }
 
-    public void setTelefoneCollection(Collection<Telefone> telefoneCollection) {
-        this.telefoneCollection = telefoneCollection;
+    public void setPaisOrigem(String paisOrigem) {
+        this.paisOrigem = paisOrigem;
     }
 
     @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntrada() {
+    public List<Telefone> getTelefoneList() {
+        return telefoneList;
+    }
+
+    public void setTelefoneList(List<Telefone> telefoneList) {
+        this.telefoneList = telefoneList;
+    }
+
+    @XmlTransient
+    public List<CadastroEntrada> getCadastroEntrada() {
         return cadastroEntrada;
     }
 
-    public void setCadastroEntrada(Collection<CadastroEntrada> cadastroEntrada) {
+    public void setCadastroEntrada(List<CadastroEntrada> cadastroEntrada) {
         this.cadastroEntrada = cadastroEntrada;
     }
 
     @XmlTransient
-    public Collection<Acompanhante> getAcompanhante() {
+    public List<Acompanhante> getAcompanhante() {
         return acompanhante;
     }
 
-    public void setAcompanhante(Collection<Acompanhante> acompanhante) {
+    public void setAcompanhante(List<Acompanhante> acompanhante) {
         this.acompanhante = acompanhante;
     }
 
-    public Endereco getIdendereco() {
-        return idendereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setIdendereco(Endereco idendereco) {
-        this.idendereco = idendereco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @XmlTransient
-    public Collection<Reserva> getReserva() {
+    public List<Reserva> getReserva() {
         return reserva;
     }
 
-    public void setReserva(Collection<Reserva> reserva) {
+    public void setReserva(List<Reserva> reserva) {
         this.reserva = reserva;
     }
 
@@ -229,5 +249,7 @@ public class Hospede implements Serializable {
     public String toString() {
         return "org.sistemahotel.Model.Hospede[ idhospede=" + idhospede + " ]";
     }
+
+
     
 }

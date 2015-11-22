@@ -8,7 +8,7 @@ package org.sistemahotel.Model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +49,7 @@ public class CategoriaProduto implements Serializable {
     @Column(name = "descricao")
     private String descricao;
     @OneToMany(mappedBy = "idcategoria")
-    private Collection<Produto> produto;
+    private List<Produto> produto;
 
     public CategoriaProduto()
     {
@@ -92,11 +92,11 @@ public class CategoriaProduto implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProduto() {
+    public List<Produto> getProduto() {
         return produto;
     }
 
-    public void setProduto(Collection<Produto> produto) {
+    public void setProduto(List<Produto> produto) {
         this.produto = produto;
     }
 

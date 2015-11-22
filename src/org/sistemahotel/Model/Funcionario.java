@@ -8,7 +8,7 @@ package org.sistemahotel.Model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -66,11 +66,11 @@ public class Funcionario implements Serializable {
         @JoinColumn(name = "idfuncionario", referencedColumnName = "idfuncionario")}, inverseJoinColumns = {
         @JoinColumn(name = "idtelefone", referencedColumnName = "idtelefone")})
     @ManyToMany
-    private Collection<Telefone> telefoneCollection;
+    private List<Telefone> telefoneList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idfuncionario")
-    private Collection<CadastroEntrada> cadastroEntradaCollection;
+    private List<CadastroEntrada> cadastroEntradaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idfuncionario")
-    private Collection<ConsumoHospede> consumoHospedeCollection;
+    private List<ConsumoHospede> consumoHospedeList;
 
     public Funcionario() {
     }
@@ -130,30 +130,30 @@ public class Funcionario implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Telefone> getTelefoneCollection() {
-        return telefoneCollection;
+    public List<Telefone> getTelefoneList() {
+        return telefoneList;
     }
 
-    public void setTelefoneCollection(Collection<Telefone> telefoneCollection) {
-        this.telefoneCollection = telefoneCollection;
-    }
-
-    @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntradaCollection() {
-        return cadastroEntradaCollection;
-    }
-
-    public void setCadastroEntradaCollection(Collection<CadastroEntrada> cadastroEntradaCollection) {
-        this.cadastroEntradaCollection = cadastroEntradaCollection;
+    public void setTelefoneList(List<Telefone> telefoneList) {
+        this.telefoneList = telefoneList;
     }
 
     @XmlTransient
-    public Collection<ConsumoHospede> getConsumoHospedeCollection() {
-        return consumoHospedeCollection;
+    public List<CadastroEntrada> getCadastroEntradaList() {
+        return cadastroEntradaList;
     }
 
-    public void setConsumoHospedeCollection(Collection<ConsumoHospede> consumoHospedeCollection) {
-        this.consumoHospedeCollection = consumoHospedeCollection;
+    public void setCadastroEntradaList(List<CadastroEntrada> cadastroEntradaList) {
+        this.cadastroEntradaList = cadastroEntradaList;
+    }
+
+    @XmlTransient
+    public List<ConsumoHospede> getConsumoHospedeList() {
+        return consumoHospedeList;
+    }
+
+    public void setConsumoHospedeList(List<ConsumoHospede> consumoHospedeList) {
+        this.consumoHospedeList = consumoHospedeList;
     }
 
     @Override

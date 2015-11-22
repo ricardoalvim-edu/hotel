@@ -6,7 +6,7 @@
 package org.sistemahotel.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,12 +52,12 @@ public class Acompanhante implements Serializable {
         @JoinColumn(name = "idacompanhante", referencedColumnName = "idacompanhante")}, inverseJoinColumns = {
         @JoinColumn(name = "idcadastroentrada", referencedColumnName = "idcadastroentrada")})
     @ManyToMany
-    private Collection<CadastroEntrada> cadastroEntradaCollection;
+    private List<CadastroEntrada> cadastroEntradaList;
     @JoinTable(name = "acompanhante_reserva", joinColumns = {
         @JoinColumn(name = "idacompanhante", referencedColumnName = "idacompanhante")}, inverseJoinColumns = {
         @JoinColumn(name = "idreservas", referencedColumnName = "idreservas")})
     @ManyToMany
-    private Collection<Reserva> reservaCollection;
+    private List<Reserva> reservaList;
     @JoinColumn(name = "idhospede", referencedColumnName = "idhospede")
     @ManyToOne(optional = false)
     private Hospede idhospede;
@@ -100,21 +100,21 @@ public class Acompanhante implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntradaCollection() {
-        return cadastroEntradaCollection;
+    public List<CadastroEntrada> getCadastroEntradaList() {
+        return cadastroEntradaList;
     }
 
-    public void setCadastroEntradaCollection(Collection<CadastroEntrada> cadastroEntradaCollection) {
-        this.cadastroEntradaCollection = cadastroEntradaCollection;
+    public void setCadastroEntradaList(List<CadastroEntrada> cadastroEntradaList) {
+        this.cadastroEntradaList = cadastroEntradaList;
     }
 
     @XmlTransient
-    public Collection<Reserva> getReservaCollection() {
-        return reservaCollection;
+    public List<Reserva> getReservaList() {
+        return reservaList;
     }
 
-    public void setReservaCollection(Collection<Reserva> reservaCollection) {
-        this.reservaCollection = reservaCollection;
+    public void setReservaList(List<Reserva> reservaList) {
+        this.reservaList = reservaList;
     }
 
     public Hospede getIdhospede() {

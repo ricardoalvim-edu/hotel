@@ -7,7 +7,7 @@ package org.sistemahotel.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,7 +52,7 @@ public class Produto implements Serializable {
     private BigDecimal preco;
     
     @ManyToMany(mappedBy = "produtoConsumidos")
-    private Collection<ConsumoHospede> consumoHospedeCollection;
+    private List<ConsumoHospede> consumoHospedeList;
     
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
     @ManyToOne
@@ -101,12 +101,12 @@ public class Produto implements Serializable {
     }
 
     @XmlTransient
-    public Collection<ConsumoHospede> getConsumoHospedeCollection() {
-        return consumoHospedeCollection;
+    public List<ConsumoHospede> getConsumoHospedeList() {
+        return consumoHospedeList;
     }
 
-    public void setConsumoHospedeCollection(Collection<ConsumoHospede> consumoHospedeCollection) {
-        this.consumoHospedeCollection = consumoHospedeCollection;
+    public void setConsumoHospedeList(List<ConsumoHospede> consumoHospedeList) {
+        this.consumoHospedeList = consumoHospedeList;
     }
 
     public CategoriaProduto getIdcategoria() {

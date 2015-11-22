@@ -7,7 +7,7 @@ package org.sistemahotel.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -66,8 +66,8 @@ public class CadastroEntrada implements Serializable {
     private String numerocartaocredito;
     @Column(name = "codcartaocredito")
     private String codcartaocredito;
-    @ManyToMany(mappedBy = "cadastroEntradaCollection")
-    private Collection<Acompanhante> acompanhanteCollection;
+    @ManyToMany(mappedBy = "cadastroEntradaList")
+    private List<Acompanhante> acompanhanteList;
     @JoinColumn(name = "idacomodacao", referencedColumnName = "idacomodacao")
     @ManyToOne(optional = false)
     private Acomodacao idacomodacao;
@@ -78,7 +78,7 @@ public class CadastroEntrada implements Serializable {
     @ManyToOne(optional = false)
     private Hospede idhospede;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcadastroentrada")
-    private Collection<ConsumoHospede> consumoHospedeCollection;
+    private List<ConsumoHospede> consumoHospedeList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idcadastroentrada")
     private CadastroSaida cadastroSaida;
 
@@ -144,12 +144,12 @@ public class CadastroEntrada implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Acompanhante> getAcompanhanteCollection() {
-        return acompanhanteCollection;
+    public List<Acompanhante> getAcompanhanteList() {
+        return acompanhanteList;
     }
 
-    public void setAcompanhanteCollection(Collection<Acompanhante> acompanhanteCollection) {
-        this.acompanhanteCollection = acompanhanteCollection;
+    public void setAcompanhanteList(List<Acompanhante> acompanhanteList) {
+        this.acompanhanteList = acompanhanteList;
     }
 
     public Acomodacao getIdacomodacao() {
@@ -177,12 +177,12 @@ public class CadastroEntrada implements Serializable {
     }
 
     @XmlTransient
-    public Collection<ConsumoHospede> getConsumoHospedeCollection() {
-        return consumoHospedeCollection;
+    public List<ConsumoHospede> getConsumoHospedeList() {
+        return consumoHospedeList;
     }
 
-    public void setConsumoHospedeCollection(Collection<ConsumoHospede> consumoHospedeCollection) {
-        this.consumoHospedeCollection = consumoHospedeCollection;
+    public void setConsumoHospedeList(List<ConsumoHospede> consumoHospedeList) {
+        this.consumoHospedeList = consumoHospedeList;
     }
 
     public CadastroSaida getCadastroSaida() {

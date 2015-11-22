@@ -7,7 +7,7 @@ package org.sistemahotel.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -62,7 +62,7 @@ public class ConsumoHospede implements Serializable {
         @JoinColumn(name = "idconsumohospede", referencedColumnName = "idconsumohospede")}, inverseJoinColumns = {
         @JoinColumn(name = "idproduto", referencedColumnName = "idproduto")})
     @ManyToMany
-    private Collection<Produto> produtoConsumidos;
+    private List<Produto> produtoConsumidos;
     
     @JoinColumn(name = "idcadastroentrada", referencedColumnName = "idcadastroentrada")
     @ManyToOne(optional = false)
@@ -118,11 +118,11 @@ public class ConsumoHospede implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoConsumidos() {
+    public List<Produto> getProdutoConsumidos() {
         return produtoConsumidos;
     }
 
-    public void setProdutoConsumidos(Collection<Produto> produtoConsumidos) {
+    public void setProdutoConsumidos(List<Produto> produtoConsumidos) {
         this.produtoConsumidos = produtoConsumidos;
     }
 

@@ -6,7 +6,7 @@
 package org.sistemahotel.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class TipoPagamento implements Serializable {
     @Column(name = "descricaotipopagamento")
     private String descricaotipopagamento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipopagamento")
-    private Collection<CadastroSaida> cadastroSaidaCollection;
+    private List<CadastroSaida> cadastroSaidaList;
 
     public TipoPagamento() {
     }
@@ -87,12 +87,12 @@ public class TipoPagamento implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CadastroSaida> getCadastroSaidaCollection() {
-        return cadastroSaidaCollection;
+    public List<CadastroSaida> getCadastroSaidaList() {
+        return cadastroSaidaList;
     }
 
-    public void setCadastroSaidaCollection(Collection<CadastroSaida> cadastroSaidaCollection) {
-        this.cadastroSaidaCollection = cadastroSaidaCollection;
+    public void setCadastroSaidaList(List<CadastroSaida> cadastroSaidaList) {
+        this.cadastroSaidaList = cadastroSaidaList;
     }
 
     @Override

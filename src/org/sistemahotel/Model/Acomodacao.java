@@ -6,7 +6,7 @@
 package org.sistemahotel.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class Acomodacao implements Serializable {
     @Column(name = "numeroacomodacao")
     private String numero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idacomodacao")
-    private Collection<CadastroEntrada> cadastroEntrada;
+    private List<CadastroEntrada> cadastroEntrada;
     @JoinColumn(name = "idcategoriaacomodacao", referencedColumnName = "idcategoriaacomodacao")
     @ManyToOne(optional = false)
     private CategoriaAcomodacao idCategoria;
@@ -88,11 +88,11 @@ public class Acomodacao implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CadastroEntrada> getCadastroEntrada() {
+    public List<CadastroEntrada> getCadastroEntrada() {
         return cadastroEntrada;
     }
 
-    public void setCadastroEntrada(Collection<CadastroEntrada> cadastroEntrada) {
+    public void setCadastroEntrada(List<CadastroEntrada> cadastroEntrada) {
         this.cadastroEntrada = cadastroEntrada;
     }
 

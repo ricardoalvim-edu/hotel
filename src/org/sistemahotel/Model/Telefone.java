@@ -8,7 +8,7 @@ package org.sistemahotel.Model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,10 +51,10 @@ public class Telefone implements Serializable {
     private String ddd;
     @Column(name = "ddi")
     private String ddi;
-    @ManyToMany(mappedBy = "telefoneCollection")
-    private Collection<Hospede> hospedeCollection;
-    @ManyToMany(mappedBy = "telefoneCollection")
-    private Collection<Funcionario> funcionarioCollection;
+    @ManyToMany(mappedBy = "telefoneList")
+    private List<Hospede> hospedeList;
+    @ManyToMany(mappedBy = "telefoneList")
+    private List<Funcionario> funcionarioList;
 
     public Telefone() {
     }
@@ -104,21 +104,21 @@ public class Telefone implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Hospede> getHospedeCollection() {
-        return hospedeCollection;
+    public List<Hospede> getHospedeList() {
+        return hospedeList;
     }
 
-    public void setHospedeCollection(Collection<Hospede> hospedeCollection) {
-        this.hospedeCollection = hospedeCollection;
+    public void setHospedeList(List<Hospede> hospedeList) {
+        this.hospedeList = hospedeList;
     }
 
     @XmlTransient
-    public Collection<Funcionario> getFuncionarioCollection() {
-        return funcionarioCollection;
+    public List<Funcionario> getFuncionarioList() {
+        return funcionarioList;
     }
 
-    public void setFuncionarioCollection(Collection<Funcionario> funcionarioCollection) {
-        this.funcionarioCollection = funcionarioCollection;
+    public void setFuncionarioList(List<Funcionario> funcionarioList) {
+        this.funcionarioList = funcionarioList;
     }
 
     @Override

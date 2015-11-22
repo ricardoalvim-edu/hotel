@@ -7,7 +7,7 @@ package org.sistemahotel.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -65,7 +65,7 @@ public class CadastroSaida implements Serializable {
     @Column(name = "valordiaria")
     private BigDecimal valordiaria;
     @OneToMany(mappedBy = "idcadastrosaida")
-    private Collection<Fatura> faturaCollection;
+    private List<Fatura> faturaList;
     @JoinColumn(name = "idcadastroentrada", referencedColumnName = "idcadastroentrada")
     @OneToOne(optional = false)
     private CadastroEntrada idcadastroentrada;
@@ -136,12 +136,12 @@ public class CadastroSaida implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Fatura> getFaturaCollection() {
-        return faturaCollection;
+    public List<Fatura> getFaturaList() {
+        return faturaList;
     }
 
-    public void setFaturaCollection(Collection<Fatura> faturaCollection) {
-        this.faturaCollection = faturaCollection;
+    public void setFaturaList(List<Fatura> faturaList) {
+        this.faturaList = faturaList;
     }
 
     public CadastroEntrada getIdcadastroentrada() {

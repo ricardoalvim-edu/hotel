@@ -6,7 +6,7 @@
 package org.sistemahotel.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,8 +49,8 @@ public class Endereco implements Serializable {
     private String cidade;
     @Column(name = "complemento")
     private String complemento;
-    @OneToMany(mappedBy = "idendereco")
-    private Collection<Hospede> hospedeCollection;
+    @OneToMany(mappedBy = "endereco")
+    private List<Hospede> hospedeList;
 
     public Endereco() {
     }
@@ -100,12 +100,12 @@ public class Endereco implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Hospede> getHospedeCollection() {
-        return hospedeCollection;
+    public List<Hospede> getHospedeList() {
+        return hospedeList;
     }
 
-    public void setHospedeCollection(Collection<Hospede> hospedeCollection) {
-        this.hospedeCollection = hospedeCollection;
+    public void setHospedeList(List<Hospede> hospedeList) {
+        this.hospedeList = hospedeList;
     }
 
     @Override

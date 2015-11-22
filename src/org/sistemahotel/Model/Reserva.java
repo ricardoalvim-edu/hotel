@@ -7,7 +7,7 @@ package org.sistemahotel.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -65,8 +65,8 @@ public class Reserva implements Serializable {
     private BigDecimal desconto;
     @Column(name = "multadesistencia")
     private BigDecimal multadesistencia;
-    @ManyToMany(mappedBy = "reservaCollection")
-    private Collection<Acompanhante> acompanhanteCollection;
+    @ManyToMany(mappedBy = "reservaList")
+    private List<Acompanhante> acompanhanteList;
     @JoinColumn(name = "idcategoriaacomodacao", referencedColumnName = "idcategoriaacomodacao")
     @ManyToOne(optional = false)
     private CategoriaAcomodacao idcategoriaacomodacao;
@@ -143,12 +143,12 @@ public class Reserva implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Acompanhante> getAcompanhanteCollection() {
-        return acompanhanteCollection;
+    public List<Acompanhante> getAcompanhanteList() {
+        return acompanhanteList;
     }
 
-    public void setAcompanhanteCollection(Collection<Acompanhante> acompanhanteCollection) {
-        this.acompanhanteCollection = acompanhanteCollection;
+    public void setAcompanhanteList(List<Acompanhante> acompanhanteList) {
+        this.acompanhanteList = acompanhanteList;
     }
 
     public CategoriaAcomodacao getIdcategoriaacomodacao() {
