@@ -5,7 +5,10 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import java.util.List;
+import org.sistemahotel.Controller.ControllerHospede;
 import org.sistemahotel.Model.Hospede;
+import org.sistemahotel.Model.Telefone;
 import org.sistemahotel.view.JanelaAbstrata;
 
 /**
@@ -19,8 +22,30 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
      */
     public CadastroHospede() {
         initComponents();
+        this.controle = new ControllerHospede();
+        currentView = controle.exibePrimeiro();
+        popularTelefones();
     }
 
+    public void popularTelefones(){
+    List <Telefone> telefones = currentView.getTelefoneList();
+    
+    
+    Object obj [][] = new Object[3][telefones.size()]; 
+    
+    int i, j; i = 0; j = 0;
+    for (Telefone t : telefones){
+        obj[i][j] = {null, null, null};
+        i++; j++;
+    }
+ 
+    String op[] = new String [] {
+        "DDI", "DDD", "Telefone"
+    };
+   tableTelefones.setModel(new javax.swing.table.DefaultTableModel(obj
+    ,op));
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -354,17 +379,6 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         jTabbedPane1.addTab("Endereço", PanelEndereco);
         PanelEndereco.getAccessibleContext().setAccessibleName("Endereco");
 
-        tableTelefones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane2.setViewportView(tableTelefones);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -538,6 +552,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         setView(controle.exibeUltimo());
     }//GEN-LAST:event_btUltimoActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -549,7 +564,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -633,10 +648,14 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JTextField tfPassaporte;
     private javax.swing.JTextField tfRgHospede;
     // End of variables declaration//GEN-END:variables
-
+    Hospede currentView;
     @Override
     protected void setView(Hospede objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(objeto == null){
+            setView(controle.novo());
+        }else{
+            currentView = objeto;            
+        }
     }
 
     @Override

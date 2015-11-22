@@ -5,25 +5,24 @@
  */
 package org.sistemahotel.Controller;
 
-import org.sistemahotel.Model.Funcionario;
+import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.dao.factoryDAO.DAOFactory;
 
 /**
  *
  * @author GILIARD
  */
-public class ControllerFuncionario extends Controller<Funcionario> {
+public class ControllerCategoriaAcomodacao extends Controller<CategoriaAcomodacao> {
 
-    public ControllerFuncionario() {
-        this.dao = DAOFactory.getDAOFactory().getFuncionarioDAO();
+    public ControllerCategoriaAcomodacao() {
+        super();
+        this.dao = DAOFactory.getDAOFactory().getCategoriaAcomodacaoDAO();
         this.lista = dao.listAll();
     }
-
+     
     @Override
-    public Funcionario novo() {
-        return new Funcionario();
+    public CategoriaAcomodacao novo() {
+        return new CategoriaAcomodacao();
     }
-    
-    
     
 }
