@@ -208,15 +208,7 @@ public class CategoriaAcomodacao implements Serializable {
 
     @Override
     public String toString() {
-        return "org.sistemahotel.Model.CategoriaAcomodacao[ idcategoriaacomodacao=" + idCategoria + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return this.nomeCategoria;
     }
     
 }
