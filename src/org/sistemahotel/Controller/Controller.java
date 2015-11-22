@@ -6,8 +6,10 @@
 package org.sistemahotel.Controller;
 
 import java.util.List;
+import org.sistemahotel.Model.Acomodacao;
 import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
+import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.dao.interfaces.DAO;
 
 /**
@@ -178,6 +180,14 @@ public abstract class Controller<T>{
     }
     
     public List<CategoriaAcomodacao> getListaCategoriaAcomodacao() {
+        return null;
+    }
+    
+    public List<Acomodacao> getListaAcomodacao() {
+        return null;
+    }
+    
+    public List<Hospede> getListaHospede() {
         return null;
     }
 }

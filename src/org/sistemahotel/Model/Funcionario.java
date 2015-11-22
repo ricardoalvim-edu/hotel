@@ -42,6 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario"),
     @NamedQuery(name = "Funcionario.findByNomefuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomefuncionario = :nomefuncionario"),
     @NamedQuery(name = "Funcionario.findByDatanascimento", query = "SELECT f FROM Funcionario f WHERE f.datanascimento = :datanascimento"),
+    @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario"),
     @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.documentoidentificacao = :documentoidentificacao"),
     @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.idendereco = :idendereco")})
 public class Funcionario implements Serializable {
@@ -55,6 +56,10 @@ public class Funcionario implements Serializable {
     private Integer idfuncionario;
     @Column(name = "nomefuncionario")
     private String nomefuncionario;
+    @Column(name = "usuariofuncionario")
+    private String usuario;    
+    @Column(name = "senhafuncionario")
+    private String senhafuncionario;
     @Column(name = "datanascimento")
     @Temporal(TemporalType.DATE)
     private Date datanascimento;
@@ -187,6 +192,34 @@ public class Funcionario implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
+    }
+
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the senhafuncionario
+     */
+    public String getSenhafuncionario() {
+        return senhafuncionario;
+    }
+
+    /**
+     * @param senhafuncionario the senhafuncionario to set
+     */
+    public void setSenhafuncionario(String senhafuncionario) {
+        this.senhafuncionario = senhafuncionario;
     }
     
 }

@@ -88,5 +88,10 @@ public class HibernateFactoryDAO extends DAOFactory {
     public TipoPagamentoDAO getTipoPagamentoDAO() {
         return new HibernateTipoPagamentoDAO();
     }
+
+    @Override
+    public AdministradorDAO getAdministrador() {
+        return new HibernateAdministradorDAO();
+    }
     
 }

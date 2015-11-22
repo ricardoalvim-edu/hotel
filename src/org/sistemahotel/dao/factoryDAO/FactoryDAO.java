@@ -11,12 +11,12 @@ import org.sistemahotel.dao.interfaces.*;
  *
  * @author GILIARD
  */
-public abstract class DAOFactory {
+public abstract class FactoryDAO {
     private static final Class FACTORY_CLASS = HibernateFactoryDAO.class;
     
-    public static DAOFactory getDAOFactory(){
+    public static FactoryDAO getFactoryDAO(){
         try {
-            return (DAOFactory) FACTORY_CLASS.newInstance();
+            return (FactoryDAO) FACTORY_CLASS.newInstance();
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         }catch(IllegalAccessException e){
@@ -53,6 +53,4 @@ public abstract class DAOFactory {
     public abstract TelefoneDAO getTelefoneDAO();
     
     public abstract TipoPagamentoDAO getTipoPagamentoDAO();
-    
-    public abstract AdministradorDAO getAdministrador();
 }

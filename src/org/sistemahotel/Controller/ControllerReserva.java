@@ -15,6 +15,7 @@ import org.sistemahotel.dao.factoryDAO.DAOFactory;
 public class ControllerReserva extends Controller<Reserva> {
 
     public ControllerReserva() {
+        super();
         this.dao = DAOFactory.getDAOFactory().getReservaDAO();
         this.lista = dao.listAll();
     }

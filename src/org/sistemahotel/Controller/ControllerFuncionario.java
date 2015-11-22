@@ -24,4 +24,6 @@ public class ControllerFuncionario extends Controller<Funcionario> {
         return new Funcionario();
     }
     
+    
+    
 }
