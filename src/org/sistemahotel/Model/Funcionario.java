@@ -5,11 +5,8 @@
  */
 package org.sistemahotel.Model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,10 +20,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -43,30 +38,52 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByNomefuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomefuncionario = :nomefuncionario"),
     @NamedQuery(name = "Funcionario.findByDatanascimento", query = "SELECT f FROM Funcionario f WHERE f.datanascimento = :datanascimento"),
     @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario"),
-    @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.documentoidentificacao = :documentoidentificacao"),
-    @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.idendereco = :idendereco")})
+    @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.numeroRG = :numeroRG"),
+    @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.endereco = :endereco")})
 public class Funcionario implements Serializable {
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idfuncionario")
     private Integer idfuncionario;
+    
     @Column(name = "nomefuncionario")
     private String nomefuncionario;
+    
     @Column(name = "usuariofuncionario")
     private String usuario;    
+    
     @Column(name = "senhafuncionario")
     private String senhafuncionario;
+    /*
+        Mudei o tipo de dado da coluna correspondete no postgres. Lembrar de executar o comando
+        ALTER TABLE funcionario ALTER COLUMN datanascimento TYPE CHAR(10);
+    */
     @Column(name = "datanascimento")
-    @Temporal(TemporalType.DATE)
-    private Date datanascimento;
-    @Column(name = "documentoidentificacao")
-    private String documentoidentificacao;
-    @Column(name = "idendereco")
-    private Integer idendereco;
+    private String datanascimento;
+    /*
+        Mudei o tipo de dado da coluna correspondete no postgres. Lembrar de executar o comando
+        
+        ALTER TABLE funcionario ADD COLUMN numeroRG VARCHAR(20);
+        ALTER TABLE funcionario ADD COLUMN orgaoEmissor VARCHAR(20);
+        ALTER TABLE funcionario ADD COLUMN numeroCPF VARCHAR(20);
+    */
+    @Column(name = "numeroRG")
+    private String numeroRG;
+    
+    @Column(name = "orgaoEmissor")
+    private String orgaoEmissor;
+    
+    @Column(name = "numeroCPF")
+    private String numeroCPF;
+    
+    @JoinColumn(name = "idendereco")
+    @OneToOne
+    private Endereco endereco;
+    
     @JoinTable(name = "funcionario_tem_telefone", joinColumns = {
         @JoinColumn(name = "idfuncionario", referencedColumnName = "idfuncionario")}, inverseJoinColumns = {
         @JoinColumn(name = "idtelefone", referencedColumnName = "idtelefone")})
@@ -78,10 +95,11 @@ public class Funcionario implements Serializable {
     private List<ConsumoHospede> consumoHospedeList;
 
     public Funcionario() {
-    }
-
-    public Funcionario(Integer idfuncionario) {
-        this.idfuncionario = idfuncionario;
+        this.nomefuncionario = "";
+        this.datanascimento = "";
+        this.numeroCPF = "";
+        this.numeroRG = "";
+        this.orgaoEmissor = "";    
     }
 
     public Integer getIdfuncionario() {
@@ -89,9 +107,7 @@ public class Funcionario implements Serializable {
     }
 
     public void setIdfuncionario(Integer idfuncionario) {
-        Integer oldIdfuncionario = this.idfuncionario;
         this.idfuncionario = idfuncionario;
-        changeSupport.firePropertyChange("idfuncionario", oldIdfuncionario, idfuncionario);
     }
 
     public String getNomefuncionario() {
@@ -99,39 +115,47 @@ public class Funcionario implements Serializable {
     }
 
     public void setNomefuncionario(String nomefuncionario) {
-        String oldNomefuncionario = this.nomefuncionario;
         this.nomefuncionario = nomefuncionario;
-        changeSupport.firePropertyChange("nomefuncionario", oldNomefuncionario, nomefuncionario);
     }
 
-    public Date getDatanascimento() {
+    public String getDatanascimento() {
         return datanascimento;
     }
 
-    public void setDatanascimento(Date datanascimento) {
-        Date oldDatanascimento = this.datanascimento;
+    public void setDatanascimento(String datanascimento) {
         this.datanascimento = datanascimento;
-        changeSupport.firePropertyChange("datanascimento", oldDatanascimento, datanascimento);
     }
 
-    public String getDocumentoidentificacao() {
-        return documentoidentificacao;
+    public String getNumeroRG() {
+        return numeroRG;
     }
 
-    public void setDocumentoidentificacao(String documentoidentificacao) {
-        String oldDocumentoidentificacao = this.documentoidentificacao;
-        this.documentoidentificacao = documentoidentificacao;
-        changeSupport.firePropertyChange("documentoidentificacao", oldDocumentoidentificacao, documentoidentificacao);
+    public void setNumeroRG(String numeroRG) {
+        this.numeroRG = numeroRG;
+    }
+    
+    public void setOrgaoEmissor(String orgao){
+        this.orgaoEmissor = orgao;
+    }
+    
+    public String getOrgaoEmissor(){
+       return this.orgaoEmissor;
+    }
+    
+    public void setCPF(String cpf){
+        this.numeroCPF = cpf;
+    }
+    
+    public String getCPF(){
+        return this.numeroCPF;
     }
 
-    public Integer getIdendereco() {
-        return idendereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setIdendereco(Integer idendereco) {
-        Integer oldIdendereco = this.idendereco;
-        this.idendereco = idendereco;
-        changeSupport.firePropertyChange("idendereco", oldIdendereco, idendereco);
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @XmlTransient
@@ -179,19 +203,6 @@ public class Funcionario implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.sistemahotel.Model.Funcionario[ idfuncionario=" + idfuncionario + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
     }
 
     /**

@@ -20,6 +20,7 @@ public class ControllerTelefone extends Controller<Telefone>{
         this.dao = DAOFactory.getDAOFactory().getTelefoneDAO();
     }
     
+    
 
     @Override
     public Telefone novo() {

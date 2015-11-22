@@ -5,9 +5,12 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import java.util.List;
 import org.sistemahotel.Controller.ControllerFuncionario;
 import org.sistemahotel.Model.Funcionario;
+import org.sistemahotel.Model.Telefone;
 import org.sistemahotel.view.JanelaAbstrata;
+import org.sistemahotel.view.MyTableModel.TableModelTelefone;
 
 /**
  *
@@ -36,27 +39,16 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         jLabel6 = new javax.swing.JLabel();
         tfCPF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
+        tfDataNascimento = new javax.swing.JFormattedTextField();
+        jpNavegar = new javax.swing.JPanel();
         btPrimeiro = new javax.swing.JButton();
         btAnterior = new javax.swing.JButton();
         btProximo = new javax.swing.JButton();
         btUltimo = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        jpEditar = new javax.swing.JPanel();
         btSalvar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        tfDDI = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        tfDDD = new javax.swing.JTextField();
-        tfTelefone = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabTelefone = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +76,13 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         jLabel6.setText("CPF:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Filiação:");
+        jLabel7.setText("Data Nascimento");
+
+        try {
+            tfDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,7 +97,6 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tfNomeFuncionario)
-                    .addComponent(jTextField6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -120,7 +117,8 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                                         .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel6)))))
+                                        .addComponent(jLabel6))))
+                            .addComponent(tfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -147,12 +145,12 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegar"));
-        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
+        jpNavegar.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegar"));
+        jpNavegar.setLayout(new java.awt.GridLayout(1, 0));
 
         btPrimeiro.setText("PRIMEIRO");
         btPrimeiro.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -161,7 +159,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btPrimeiroActionPerformed(evt);
             }
         });
-        jPanel7.add(btPrimeiro);
+        jpNavegar.add(btPrimeiro);
 
         btAnterior.setText("ANTERIOR");
         btAnterior.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -170,7 +168,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btAnteriorActionPerformed(evt);
             }
         });
-        jPanel7.add(btAnterior);
+        jpNavegar.add(btAnterior);
 
         btProximo.setText("PRÓXIMO");
         btProximo.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -179,7 +177,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btProximoActionPerformed(evt);
             }
         });
-        jPanel7.add(btProximo);
+        jpNavegar.add(btProximo);
 
         btUltimo.setText("ÚLTIMO");
         btUltimo.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -188,10 +186,10 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btUltimoActionPerformed(evt);
             }
         });
-        jPanel7.add(btUltimo);
+        jpNavegar.add(btUltimo);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar"));
-        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
+        jpEditar.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar"));
+        jpEditar.setLayout(new java.awt.GridLayout(1, 0));
 
         btSalvar.setText("SALVAR");
         btSalvar.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -200,7 +198,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btSalvarActionPerformed(evt);
             }
         });
-        jPanel6.add(btSalvar);
+        jpEditar.add(btSalvar);
 
         btExcluir.setText("EXCLUIR");
         btExcluir.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -209,7 +207,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btExcluirActionPerformed(evt);
             }
         });
-        jPanel6.add(btExcluir);
+        jpEditar.add(btExcluir);
 
         btNovo.setText("NOVO");
         btNovo.setPreferredSize(new java.awt.Dimension(73, 50));
@@ -218,104 +216,17 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 btNovoActionPerformed(evt);
             }
         });
-        jPanel6.add(btNovo);
-
-        tfDDI.setText(" ");
-        tfDDI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDDIActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("DDI");
-
-        jLabel11.setText("DDD");
-
-        jLabel12.setText("Telefone");
-
-        tfDDD.setText(" ");
-
-        tfTelefone.setText(" ");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Adicionar telefone", jPanel1);
-
-        tabTelefone.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tabTelefone);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Ver telefones", jPanel3);
+        jpEditar.add(btNovo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpNavegar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,12 +239,10 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addComponent(jpEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpNavegar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -374,10 +283,6 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         // TODO add your handling code here:
         setView(controle.novo());
     }//GEN-LAST:event_btNovoActionPerformed
-
-    private void tfDDIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDDIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDDIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,32 +328,21 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btUltimo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTable tabTelefone;
+    private javax.swing.JPanel jpEditar;
+    private javax.swing.JPanel jpNavegar;
     private javax.swing.JTextField tfCPF;
     private javax.swing.JTextField tfCodigo;
-    private javax.swing.JTextField tfDDD;
-    private javax.swing.JTextField tfDDI;
+    private javax.swing.JFormattedTextField tfDataNascimento;
     private javax.swing.JTextField tfNomeFuncionario;
     private javax.swing.JTextField tfOrgaoEmissor;
     private javax.swing.JTextField tfRG;
-    private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
     Funcionario currentView;
     /**
@@ -463,13 +357,38 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
     
     @Override
     protected void setView(Funcionario objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(objeto == null){
+            setView(controle.novo());
+        }else{
+            currentView = objeto;
+            tfNomeFuncionario.setText(objeto.getNomefuncionario());
+            tfRG.setText(objeto.getNumeroRG());
+            tfOrgaoEmissor.setText(objeto.getOrgaoEmissor());
+            tfCPF.setText(objeto.getCPF());
+            tfDataNascimento.setText(objeto.getDatanascimento());
+                                  
+            System.out.println(" set view -> "+tfDataNascimento.getText());
+            
+            if(objeto.getIdfuncionario() == null){
+                tfCodigo.setText("");
+            }else{
+                tfCodigo.setText(String.valueOf(objeto.getIdfuncionario()));
+            }
+            
+        }
     }
 
     @Override
     protected Funcionario getView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentView.setNomefuncionario(tfNomeFuncionario.getText());
+        currentView.setCPF(tfCPF.getText());
+        currentView.setNumeroRG(tfRG.getText());
+        currentView.setOrgaoEmissor(tfOrgaoEmissor.getText());
+        currentView.setDatanascimento(tfDataNascimento.getText());
+        
+        System.out.println("@ get view ->"+tfDataNascimento.getText());
+        
+        return currentView;
     }
-    
     
 }
