@@ -37,8 +37,8 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel3" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -50,15 +50,40 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Painel de Gerenciamento"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ol&#xe1; Usu&#xe1;rio x"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
 
@@ -87,12 +112,52 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="384" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btCadAco" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btCadFun" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btReservHoje" alignment="0" pref="143" max="32767" attributes="0"/>
+                                  <Component id="btCadProd" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btCadReserv" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btCadCatAco" max="32767" attributes="0"/>
+                              <Component id="btVerFun" max="32767" attributes="0"/>
+                              <Component id="btVerReserv" max="32767" attributes="0"/>
+                              <Component id="btVerTodosProd" max="32767" attributes="0"/>
+                              <Component id="btReservSem" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btVerAco" max="32767" attributes="0"/>
+                              <Component id="btCancelarReserva" max="32767" attributes="0"/>
+                              <Component id="btVerCatProd" alignment="0" pref="210" max="32767" attributes="0"/>
+                              <Component id="btReservMes" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btCheckIn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btCheckOut" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btRealizaBackup" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btRestoreBackup" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,27 +166,147 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCadAco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCadCatAco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVerAco" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="236" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btCadFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVerFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btCadReserv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVerReserv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCancelarReserva" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btCadProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVerTodosProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVerCatProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btReservHoje" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btReservSem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btReservMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btCheckIn" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCheckOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btRealizaBackup" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btRestoreBackup" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btCadAco">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar Acomoda&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadAcoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btCadCatAco">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="Cadastrar Categorias de Acomoda&#xe7;&#xf5;es"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCadFun">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastrar Funcion&#xe1;rios"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btVerFun">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver funcion&#xe1;rios"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btVerAco">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver acomoda&#xe7;&#xf5;es"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCadReserv">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastrar Reservas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btVerReserv">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver Reservas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCancelarReserva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar Reserva"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCadProd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastrar Produto"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btVerTodosProd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Todos os produtos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btVerCatProd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro de Categorias de Produtos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btReservHoje">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver resevas para hoje"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btReservSem">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver reservas para esta semana"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btReservMes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver reservas para este m&#xea;s"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCheckIn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Checkin"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btCheckOut">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Checkout"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btRealizaBackup">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Realizar Backup"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRealizaBackupActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btRestoreBackup">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Restaurar Backup"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRestoreBackupActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

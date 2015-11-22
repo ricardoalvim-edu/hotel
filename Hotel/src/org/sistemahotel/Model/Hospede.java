@@ -102,7 +102,15 @@ public class Hospede implements Serializable {
     private List<Reserva> reserva;
 
     public Hospede() {
-        
+        this.cpfhospede = "";
+        this.endereco = new Endereco();
+        this.telefoneList = null;
+        this.paisOrigem = "";
+        this.reserva = null;
+        this.rgEmissor = null;
+        this.rghospede = null;
+        this.dataNascimento = null;
+        this.filiacao = null;
     }
 
     public Hospede(Integer idhospede) {

@@ -57,6 +57,9 @@ public class Telefone implements Serializable {
     private List<Funcionario> funcionarioList;
 
     public Telefone() {
+        this.ddd = "";
+        this.ddi = "";
+        this.telefone = "";
     }
 
     public Telefone(Integer idtelefone) {

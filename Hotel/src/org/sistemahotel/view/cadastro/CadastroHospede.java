@@ -6,6 +6,7 @@
 package org.sistemahotel.view.cadastro;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.sistemahotel.Controller.ControllerHospede;
 import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.Model.Telefone;
@@ -27,25 +28,32 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         popularTelefones();
     }
 
-    public void popularTelefones(){
-    List <Telefone> telefones = currentView.getTelefoneList();
-    
-    
-    Object obj [][] = new Object[3][telefones.size()]; 
-    
-    int i, j; i = 0; j = 0;
-    for (Telefone t : telefones){
-        obj[i][j] = {null, null, null};
-        i++; j++;
-    }
- 
-    String op[] = new String [] {
-        "DDI", "DDD", "Telefone"
-    };
-   tableTelefones.setModel(new javax.swing.table.DefaultTableModel(obj
-    ,op));
+    public void popularTelefones() {
+        if (!currentView.getTelefoneList().isEmpty()) {
+            List<Telefone> telefones = currentView.getTelefoneList();
+
+            Object obj[][] = new Object[telefones.size()][3];
+            int i = 0;
+            for (Telefone t : telefones) {
+                for (int j = 0; j < 3; j++) {
+                    if (j == 0) {
+                        obj[i][j] = t.getDdi();
+                    } else if (j == 1) {
+                        obj[i][j] = t.getDdd();
+                    } else if (j == 2) {
+                        obj[i][j] = t.getTelefone();
+                    }
+                }
+            }
+
+            String op[] = new String[]{
+                "DDI", "DDD", "Telefone"
+            };
+            tableTelefones.setModel(new javax.swing.table.DefaultTableModel(obj, op));
+        }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -552,7 +560,6 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         setView(controle.exibeUltimo());
     }//GEN-LAST:event_btUltimoActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -649,12 +656,14 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JTextField tfRgHospede;
     // End of variables declaration//GEN-END:variables
     Hospede currentView;
+
     @Override
     protected void setView(Hospede objeto) {
-        if(objeto == null){
+        if (objeto == null) {
             setView(controle.novo());
-        }else{
-            currentView = objeto;            
+            JOptionPane.showMessageDialog(null, "null");
+        } else {
+            currentView = objeto;
         }
     }
 

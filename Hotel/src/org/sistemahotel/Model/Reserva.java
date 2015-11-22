@@ -51,10 +51,10 @@ public class Reserva implements Serializable {
     private Integer idreservas;
     @Basic(optional = false)
     @Column(name = "datahorachegadareserva")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date datahorachegadareserva;
     @Column(name = "datahorasaidareserva")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date datahorasaidareserva;
     @Column(name = "numerocartaocredito")
     private String numerocartaocredito;
@@ -75,6 +75,12 @@ public class Reserva implements Serializable {
     private Hospede idhospede;
 
     public Reserva() {
+        this.codcartaocredito = "";
+        this.acompanhanteList = null;
+        this.datahorachegadareserva = null;
+        this.datahorasaidareserva = null;
+        this.desconto = new BigDecimal(0.0);
+        this.multadesistencia = new BigDecimal(0.0);       
     }
 
     public Reserva(Integer idreservas) {
