@@ -5,19 +5,29 @@
  */
 package org.sistemahotel.Controller;
 
-import org.sistemahotel.Model.Hospede;
+import java.util.List;
 import org.sistemahotel.Model.Telefone;
+import org.sistemahotel.Model.AgendaContato;
 import org.sistemahotel.dao.factoryDAO.DAOFactory;
 
 /**
  *
  * @author GILIARD
  */
-public class ControllerTelefone extends Controller<Telefone>{
-
+public class ControllerTelefone extends Controller<Telefone> implements AgendaContato {
+    
+    AgendaContato proprietario; 
+    
     public ControllerTelefone() {
         super();
         this.dao = DAOFactory.getDAOFactory().getTelefoneDAO();
+        this.lista = dao.listAll();
+    }
+    
+    public ControllerTelefone(AgendaContato proprietario){
+        this.dao = DAOFactory.getDAOFactory().getTelefoneDAO();
+        this.lista = proprietario.getListaTelefone();
+        this.proprietario = proprietario;
     }
     
     
@@ -26,5 +36,26 @@ public class ControllerTelefone extends Controller<Telefone>{
     public Telefone novo() {
         return new Telefone();
     }
+    
+    @Override
+    public List<Telefone> listarTudo(){
+        return this.lista;
+    }
+
+    @Override
+    public List<Telefone> getListaTelefone() {
+        return proprietario.getListaTelefone();
+    }
+
+    @Override
+    public void setListaTelefone(List<Telefone> lista) {
+        proprietario.setListaTelefone(lista);
+    }
+
+    @Override
+    public String getNomeProprietarioAgenda() {
+        return proprietario.getNomeProprietarioAgenda();
+    }
+
     
 }

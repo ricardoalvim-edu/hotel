@@ -22,6 +22,6 @@ public class ControllerHospede extends Controller<Hospede>{
     @Override
     public Hospede novo() {
         return new Hospede();
-    }
+    }    
     
 }

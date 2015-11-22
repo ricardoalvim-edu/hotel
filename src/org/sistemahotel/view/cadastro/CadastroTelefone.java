@@ -5,9 +5,11 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.sistemahotel.Controller.ControllerTelefone;
 import org.sistemahotel.Model.Telefone;
+import org.sistemahotel.Model.AgendaContato;
 import org.sistemahotel.view.JanelaAbstrata;
 import org.sistemahotel.view.MyTableModel.TableModelTelefone;
 
@@ -26,6 +28,8 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
     private void initComponents() {
 
         jpTitulo = new javax.swing.JPanel();
+        lbNome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jpCadastrarTelefone = new javax.swing.JPanel();
         tfDDI = new javax.swing.JTextField();
         tfDDD = new javax.swing.JTextField();
@@ -45,18 +49,36 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
         btAnterior = new javax.swing.JButton();
         btProximo = new javax.swing.JButton();
         btUltimo = new javax.swing.JButton();
+        jpTitulo1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lbNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbNome.setText("NomeProprietarioContatos");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Cadastrar telefone para:");
 
         javax.swing.GroupLayout jpTituloLayout = new javax.swing.GroupLayout(jpTitulo);
         jpTitulo.setLayout(jpTituloLayout);
         jpTituloLayout.setHorizontalGroup(
             jpTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpTituloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbNome)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpTituloLayout.setVerticalGroup(
             jpTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
+            .addGroup(jpTituloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNome)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpCadastrarTelefone.setBorder(javax.swing.BorderFactory.createTitledBorder("Telefone"));
@@ -83,7 +105,7 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
         jpCadastrarTelefoneLayout.setHorizontalGroup(
             jpCadastrarTelefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastrarTelefoneLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpCadastrarTelefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -217,6 +239,13 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
         });
         jpNavegar.add(btUltimo);
 
+        jpTitulo1.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("CADASTRO DE TELEFONE");
+        jpTitulo1.add(jLabel1, java.awt.BorderLayout.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,13 +256,16 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpTabTelefones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpTabTelefones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpTitulo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpCadastrarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,12 +285,16 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
     }//GEN-LAST:event_tfDDIActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        controle.salvar(getView());
+       /*
+        O método adicionarTelefone está declarado na classe Cadastro de Telefone.
+        nele o telefone é salvo na base de dados e  atualizado no JTable
+        */
+        adicionarTelefone(getView());
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        controle.excluir(getView());
+        removeTelefone(getView());
         setView(controle.exibeAtual());
     }//GEN-LAST:event_btExcluirActionPerformed
 
@@ -330,15 +366,19 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
     private javax.swing.JButton btProximo;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btUltimo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpCadastrarTelefone;
     private javax.swing.JPanel jpEditar;
     private javax.swing.JPanel jpNavegar;
     private javax.swing.JPanel jpTabTelefones;
     private javax.swing.JPanel jpTitulo;
+    private javax.swing.JPanel jpTitulo1;
+    private javax.swing.JLabel lbNome;
     private javax.swing.JTable tabTelefone;
     private javax.swing.JTextField tfDDD;
     private javax.swing.JTextField tfDDI;
@@ -353,19 +393,25 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
         // somente para exemplo
     }
     
-    public CadastroTelefone(String proprietario, List<Telefone> lista) {
+    public CadastroTelefone(AgendaContato proprietario) {
         initComponents();
+        
+        this.controle = new ControllerTelefone(proprietario);
+        
         setTableModelTelefone();
-        this.controle = new ControllerTelefone();
+        setDateTableTelefone(controle.listarTudo());
+        
+        currentView = controle.exibePrimeiro();
+        setView(currentView);
+        lbNome.setText(proprietario.getNomeProprietarioAgenda());
     }
     
     @Override
     protected void setView(Telefone objeto) {
         if(objeto == null){
-            tfDDD.setText("");
-            tfDDI.setText("");
-            tfTelefone.setText("");
+            setView(controle.novo());
         }else{
+            currentView = objeto;
             tfDDD.setText(objeto.getDdd());
             tfDDI.setText(objeto.getDdi());
             tfTelefone.setText(objeto.getTelefone());
@@ -374,23 +420,36 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
 
     @Override
     protected Telefone getView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentView.setDdd(tfDDD.getText());
+        currentView.setDdi(tfDDI.getText());
+        currentView.setTelefone(tfTelefone.getText());
+        
+        return currentView;
     }
     
-    private void adicionarTelefone(){
-        Telefone telefone = new Telefone();
-        telefone.setDdd(tfDDD.getText());
-        telefone.setDdi(tfDDI.getText());
-        telefone.setTelefone(tfTelefone.getText());
+    private void adicionarTelefone(Telefone telefone){
+        //adiciona registro à lista de objetos
+        TableModelTelefone model = (TableModelTelefone) tabTelefone.getModel();
+        if(!controle.listarTudo().contains(telefone)){
+            controle.listarTudo().add(telefone);
+            model.addTelefone(telefone);
+        }else{
+            model.updateTelefone(telefone);
+        }
         
-        /*List<Telefone> lista = currentView.getTelefoneList();
-        lista.add(telefone);
-        */
+        controle.salvar(telefone);
+ 
+    }
+    
+    private void removeTelefone(Telefone telefone){
+        TableModelTelefone model = (TableModelTelefone) tabTelefone.getModel();
         
+        model.removeTelefone(telefone);
         
-        tfDDD.setText("");
-        tfDDI.setText("");
-        tfTelefone.setText("");
+        controle.excluir(telefone);
+        
+        setView(controle.exibeAtual());
+       
     }
     
     private void setTableModelTelefone(){
@@ -400,7 +459,11 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
                 
     }
     
-    private void updateTableTelefone(List<Telefone> lista){
+    private void setDateTableTelefone(List<Telefone> lista){
+        if(lista == null){
+            // Essa gambiarra é da brava
+            ((ControllerTelefone) controle).setListaTelefone(new ArrayList<>());
+        }
         TableModelTelefone model = (TableModelTelefone)tabTelefone.getModel();
         model.setRows(lista);
     }

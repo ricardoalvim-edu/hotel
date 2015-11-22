@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario"),
     @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.numeroRG = :numeroRG"),
     @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.endereco = :endereco")})
-public class Funcionario implements Serializable {
+public class Funcionario implements Serializable, AgendaContato{
     
     private static final long serialVersionUID = 1L;
     
@@ -232,5 +232,21 @@ public class Funcionario implements Serializable {
     public void setSenhafuncionario(String senhafuncionario) {
         this.senhafuncionario = senhafuncionario;
     }
+
+    @Override
+    public List<Telefone> getListaTelefone() {
+        return this.getTelefoneList();
+    }
+
+    @Override
+    public void setListaTelefone(List<Telefone> lista) {
+        this.setTelefoneList(lista);
+    }
+
+    @Override
+    public String getNomeProprietarioAgenda() {
+        return this.getNomefuncionario();
+    }
+
     
 }

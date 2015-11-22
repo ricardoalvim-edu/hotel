@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hospede.findByDatanascimentohospede", query = "SELECT h FROM Hospede h WHERE h.dataNascimento = :datanascimentohospede"),
     @NamedQuery(name = "Hospede.findByFiliacaohospede", query = "SELECT h FROM Hospede h WHERE h.filiacao = :filiacaohospede"),
     @NamedQuery(name = "Hospede.findByPassaportehospedeestrangeiro", query = "SELECT h FROM Hospede h WHERE h.passaporte = :passaportehospedeestrangeiro")})
-public class Hospede implements Serializable {
+public class Hospede implements Serializable, AgendaContato{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -257,6 +257,19 @@ public class Hospede implements Serializable {
         return "org.sistemahotel.Model.Hospede[ idhospede=" + idhospede + " ]";
     }
 
+    @Override
+    public List<Telefone> getListaTelefone() {
+        return this.getTelefoneList();
+    }
 
-    
+    @Override
+    public void setListaTelefone(List<Telefone> lista) {
+        this.setTelefoneList(lista);
+    }
+
+    @Override
+    public String getNomeProprietarioAgenda() {
+        return this.getNomehospede();
+    }
+   
 }

@@ -48,12 +48,13 @@ public abstract class Controller<T>{
    public void excluir(T objeto){
        if(lista.contains(objeto)){
            lista.remove(objeto);
+           dao.beginTransaction();
+           dao.delete(objeto);
+           dao.commitTransaction();
+           //dao.closeTransaction();
+           updateCursor();
        }
-       dao.beginTransaction();
-       dao.delete(objeto);
-       dao.commitTransaction();
-       dao.closeTransaction();
-       updateCursor();
+
    }   
    
    public T exibeProximo(){

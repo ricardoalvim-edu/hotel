@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.view.MyTableModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import org.sistemahotel.Model.Telefone;
@@ -74,5 +75,23 @@ public class TableModelTelefone extends  AbstractTableModel{
         this.linhas = novaslinhas;
         // notifica a JTable que todos os dados da tabela podem ter sido alterados
         fireTableDataChanged();
+    }
+    
+    public void addTelefone(Telefone telefone){
+        
+        int ultimoIndice = this.linhas.indexOf(telefone);
+        fireTableRowsInserted(ultimoIndice, ultimoIndice);
+    }
+    
+    public void updateTelefone(Telefone telefone){
+        int linha = this.linhas.indexOf(telefone);
+        fireTableRowsUpdated(linha, linha);
+    }
+    
+    public void removeTelefone(Telefone telefone){
+        int linha = this.linhas.indexOf(telefone);
+        linhas.remove(telefone);
+        
+        fireTableRowsDeleted(linha, linha);
     }
 }
