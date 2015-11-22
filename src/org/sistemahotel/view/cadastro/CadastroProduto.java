@@ -322,6 +322,7 @@ public class CadastroProduto extends JanelaAbstrata<Produto> {
     private javax.swing.JTextField tfNomeProduto;
     private javax.swing.JTextField tfPreco;
     // End of variables declaration//GEN-END:variables
+        
     Produto currentView;
 
     /**
