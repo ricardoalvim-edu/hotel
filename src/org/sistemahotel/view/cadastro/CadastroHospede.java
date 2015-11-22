@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import org.sistemahotel.Controller.ControllerHospede;
 import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.view.JanelaAbstrata;
 
@@ -13,14 +14,6 @@ import org.sistemahotel.view.JanelaAbstrata;
  * @author GILIARD
  */
 public class CadastroHospede extends JanelaAbstrata<Hospede> {
-
-    /**
-     * Creates new form CadastroHospede
-     */
-    public CadastroHospede() {
-        initComponents();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +53,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         jLabel9 = new javax.swing.JLabel();
         tfPaisOrigem = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfFdataNascimento = new javax.swing.JFormattedTextField();
+        tfdataNascimento = new javax.swing.JFormattedTextField();
         PanelEndereco = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -74,12 +67,14 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableTelefones = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfTelefone = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        tfDDD = new javax.swing.JTextField();
+        tfDDI = new javax.swing.JTextField();
         PanelAcompanhantes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAcompanhantes = new javax.swing.JTable();
@@ -199,7 +194,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Data de Nascimento");
 
-        tfFdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        tfdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         javax.swing.GroupLayout PanelDadosPessoaisLayout = new javax.swing.GroupLayout(PanelDadosPessoais);
         PanelDadosPessoais.setLayout(PanelDadosPessoaisLayout);
@@ -222,7 +217,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
                     .addGroup(PanelDadosPessoaisLayout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfFdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(PanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -231,7 +226,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
                                 .addComponent(jLabel8)
                                 .addGap(179, 179, 179)
                                 .addComponent(jLabel9)))
-                        .addGap(0, 124, Short.MAX_VALUE))
+                        .addGap(0, 98, Short.MAX_VALUE))
                     .addGroup(PanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(PanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDadosPessoaisLayout.createSequentialGroup()
@@ -285,8 +280,8 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
                 .addGap(8, 8, 8)
                 .addGroup(PanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfFdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(tfdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         jTabbedPane1.addTab("Dados Pessoais", PanelDadosPessoais);
@@ -384,36 +379,42 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         PanelContato.setLayout(PanelContatoLayout);
         PanelContatoLayout.setHorizontalGroup(
             PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
-            .addGroup(PanelContatoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContatoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel14)
                     .addGroup(PanelContatoLayout.createSequentialGroup()
-                        .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelContatoLayout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelContatoLayout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))
-                            .addComponent(jTextField1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PanelContatoLayout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(410, 410, 410))))
+                                .addComponent(jButton4)))))
+                .addGap(39, 39, 39))
         );
         PanelContatoLayout.setVerticalGroup(
             PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContatoLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,7 +450,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
             .addGroup(PanelAcompanhantesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelAcompanhantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                     .addGroup(PanelAcompanhantesLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -458,7 +459,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         PanelAcompanhantesLayout.setVerticalGroup(
             PanelAcompanhantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAcompanhantesLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,10 +493,10 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PanelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PanelNavegar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -616,32 +617,94 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableAcompanhantes;
     private javax.swing.JTable tableTelefones;
     private javax.swing.JTextField tfCPF;
     private javax.swing.JTextField tfCod;
+    private javax.swing.JTextField tfDDD;
+    private javax.swing.JTextField tfDDI;
     private javax.swing.JTextField tfEndCidade;
     private javax.swing.JTextField tfEndComplemento;
     private javax.swing.JTextField tfEndLogradouro;
     private javax.swing.JTextField tfEndNumResidencia;
-    private javax.swing.JFormattedTextField tfFdataNascimento;
     private javax.swing.JTextField tfFiliacao;
     private javax.swing.JTextField tfNomeHospede;
     private javax.swing.JTextField tfOrgaoEmissor;
     private javax.swing.JTextField tfPaisOrigem;
     private javax.swing.JTextField tfPassaporte;
     private javax.swing.JTextField tfRgHospede;
+    private javax.swing.JTextField tfTelefone;
+    private javax.swing.JFormattedTextField tfdataNascimento;
     // End of variables declaration//GEN-END:variables
-
+    private Hospede currentView;
+    
+    /**
+     * Creates new form CadastroHospede
+     */
+    public CadastroHospede() {
+        initComponents();
+        controle = new ControllerHospede();
+        currentView = controle.exibePrimeiro();
+        setView(currentView);
+    }
+    
     @Override
     protected void setView(Hospede objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(objeto == null){
+            setView(controle.novo());
+        }else{
+           //Primeiro panel
+           tfNomeHospede.setText(objeto.getNomehospede());
+           tfOrgaoEmissor.setText(objeto.getRgEmissor());
+           tfCPF.setText(objeto.getCpfhospede());
+           tfRgHospede.setText(objeto.getRghospede());
+           tfPassaporte.setText(objeto.getPassaporte());
+           tfPaisOrigem.setText(objeto.getPaisOrigem());
+           tfdataNascimento.setText(String.valueOf(objeto.getDataNascimento()));
+           tfFiliacao.setText(objeto.getFiliacao());
+           
+           
+           //Segundo panel
+           if(objeto.getEndereco() == null){
+                tfEndCidade.setText("");
+                tfEndComplemento.setText("");
+                tfEndLogradouro.setText("");
+                tfEndNumResidencia.setText("");
+           }else{
+                tfEndCidade.setText(objeto.getEndereco().getCidade());
+                tfEndComplemento.setText(objeto.getEndereco().getComplemento());
+                tfEndLogradouro.setText(objeto.getEndereco().getNomelodradouro());
+                tfEndNumResidencia.setText(objeto.getEndereco().getNumero());
+           }
+           
+           if(objeto.getIdhospede() == null){
+               tfCod.setText("");
+           }else{
+               tfCod.setText(String.valueOf(objeto.getIdhospede()));
+           }
+                   
+        }
     }
 
     @Override
     protected Hospede getView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentView.setNomehospede(tfNomeHospede.getText());
+        currentView.setRgEmissor("");
+        currentView.setRghospede("");
+        currentView.setCpfhospede("");
+        currentView.setPassaporte("");
+        currentView.setPaisOrigem("");
+        currentView.setFiliacao("");
+        currentView.setDataNascimento(tfdataNascimento.getText());
+        
+        currentView.getEndereco().setCidade("");
+        currentView.getEndereco().setComplemento("");
+        currentView.getEndereco().setNomelodradouro("");
+        currentView.getEndereco().setNumero("");
+  
+        
+        
+        return currentView;
     }
 
 }

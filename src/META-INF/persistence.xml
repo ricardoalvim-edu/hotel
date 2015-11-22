@@ -6,6 +6,17 @@
     <class>org.sistemahotel.Model.Funcionario</class>
     <class>org.sistemahotel.Model.CategoriaAcomodacao</class>
     <class>org.sistemahotel.Model.CategoriaProduto</class>
+    <class>org.sistemahotel.Model.Acomodacao</class>
+    <class>org.sistemahotel.Model.Endereco</class>
+    <class>org.sistemahotel.Model.Fatura</class>
+    <class>org.sistemahotel.Model.ConsumoHospede</class>
+    <class>org.sistemahotel.Model.Acompanhante</class>
+    <class>org.sistemahotel.Model.Produto</class>
+    <class>org.sistemahotel.Model.Hospede</class>
+    <class>org.sistemahotel.Model.CadastroSaida</class>
+    <class>org.sistemahotel.Model.CadastroEntrada</class>
+    <class>org.sistemahotel.Model.Reserva</class>
+    <class>org.sistemahotel.Model.TipoPagamento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hotel"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
