@@ -6,16 +6,13 @@
 package org.sistemahotel.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.sistemahotel.Model.Acomodacao;
 import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
-import org.sistemahotel.dao.factoryDAO.DAOFactory;
-import org.sistemahotel.dao.interfaces.CategoriaAcomodacaoDAO;
-import org.sistemahotel.dao.interfaces.CategoriaProdutoDAO;
 import org.sistemahotel.dao.interfaces.DAO;
 
 /**
@@ -214,5 +211,16 @@ public abstract class Controller<T>{
         return dao.getListaHospede();
     }
     
+    public Object getByUser(String nome, Class classe, String param, String query) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, nome).uniqueResult();    
+    }
     
+    public List<T> getByName(String nome, Class classe, String param, String query) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, "%"+nome+"%").list();    
+    }
+    
+    public List<Acomodacao> getAcomodacaoLivre(Date entrada, Date saida){
+        return HibernateUtil.getSession().getNamedQuery(Acomodacao.class.getSimpleName() + ".findByLivre")
+                .setParameter("entrada", entrada).setParameter("saida", saida).list();
+    }
 }
