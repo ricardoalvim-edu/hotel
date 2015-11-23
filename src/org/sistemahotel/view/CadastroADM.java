@@ -15,15 +15,6 @@ import org.sistemahotel.Model.Administrador;
  * @author ricar
  */
 public class CadastroADM extends JanelaAbstrata<Administrador> {
-
-    /**
-     * Creates new form CadastroADM
-     */
-    public CadastroADM() {
-        initComponents();
-        controle = new ControllerAdministrador();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,35 +24,52 @@ public class CadastroADM extends JanelaAbstrata<Administrador> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfLogin = new javax.swing.JTextField();
+        tfUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btCriar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btLimpar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jpfSenha = new javax.swing.JPasswordField();
+        jpfConfirmarSenha = new javax.swing.JPasswordField();
+        tfAlerta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tfLogin.setText(" ");
-        tfLogin.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.setText(" ");
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLoginActionPerformed(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Login:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Senha:");
 
-        btCriar.setText("Criar");
+        btCriar.setText("CONFIRMAR");
         btCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCriarActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Cadastro inicial - Administrador do Sistema");
+
+        btLimpar.setText("LIMPAR");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Confirmar senha:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,60 +79,74 @@ public class CadastroADM extends JanelaAbstrata<Administrador> {
                 .addContainerGap()
                 .addComponent(jSeparator1))
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(btCriar)
+                .addGap(74, 74, 74)
+                .addComponent(btCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(82, 82, 82))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfAlerta)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpfConfirmarSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpfSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                            .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(82, 82, 82))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfAlerta)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCriar)
-                .addGap(57, 57, 57))
+                .addComponent(jpfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLoginActionPerformed
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void btCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarActionPerformed
         // TODO add your handling code here:
-        String msg = "";
-        try {
-            controle.salvar(getView());
-            msg = "Usuário " + getView().getUsuario() + " salvo com sucesso!";
-            System.out.println("meh");
-        } catch (Exception ex) {
-            msg = "Erro: " + ex.getMessage();
-        } finally {
-            JOptionPane.showMessageDialog(null, msg);
-        }
-        
+        cadastraSenha(new Administrador());
     }//GEN-LAST:event_btCriarActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        // TODO add your handling code here:
+        limparCamposSenha();
+    }//GEN-LAST:event_btLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,15 +185,27 @@ public class CadastroADM extends JanelaAbstrata<Administrador> {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCriar;
+    private javax.swing.JButton btLimpar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField tfLogin;
-    private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JPasswordField jpfConfirmarSenha;
+    private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JLabel tfAlerta;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
     Administrador currentView;
 
+    /**
+     * Creates new form CadastroADM
+     */
+    public CadastroADM() {
+        initComponents();
+        controle = new ControllerAdministrador();
+    }
+    
     @Override
     protected void setView(Administrador objeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -180,8 +214,63 @@ public class CadastroADM extends JanelaAbstrata<Administrador> {
     @Override
     protected Administrador getView() {
         currentView = new Administrador();
-        currentView.setSenha(tfPassword.getText());
-        currentView.setUsuario(tfLogin.getText());
+        currentView.setSenha(jpfSenha.getText());
+        currentView.setUsuario(tfUsuario.getText());
         return currentView;
     }
+    
+    private void cadastraSenha(Administrador adm){
+        if(confirmaPreenchimentoCampos()){
+                if(confirmaSenhasDigitadas()){
+                    String  user = tfUsuario.getText();
+                    String senha = jpfSenha.getText();
+                    
+                    adm.setUsuario(user);
+                    adm.setSenha(senha);
+                    
+                    controle.salvar(adm);
+                    String msg = "Usuário " + getView().getUsuario() + " salvo com sucesso!";
+                    JOptionPane.showMessageDialog(this, msg);
+                    limparCamposSenha();
+                    
+                }else{
+                    tfAlerta.setText("Senhas digitadas não são iguais. Verifique!!");
+                }
+            }else{
+                tfAlerta.setText("Campos vazios!! Verifique!!");
+            }
+    }
+    
+    private boolean confirmaPreenchimentoCampos(){
+        String user = tfUsuario.getText();
+        String senha1 = jpfSenha.getText();
+        String senha2 = jpfConfirmarSenha.getText();
+        boolean resposta = false;
+        
+        if(user != null && senha1 != null && senha2 != null){
+            if(!user.isEmpty() && !senha1.isEmpty() && !senha2.isEmpty()){
+                resposta = true;
+            }
+        }
+        return resposta;
+    }
+    
+    private boolean confirmaExistenciaBaseDados(Administrador adm){
+        return controle.listAll().contains(adm);
+    }
+    
+    private boolean confirmaSenhasDigitadas(){
+        String senha1 = jpfSenha.getText();
+        String senha2 = jpfConfirmarSenha.getText();
+        
+        return senha1.equals(senha2);
+    }
+    
+    private void limparCamposSenha(){
+        tfUsuario.setText("");
+        jpfSenha.setText("");
+        jpfConfirmarSenha.setText("");
+        tfAlerta.setText("");
+    }
+
 }

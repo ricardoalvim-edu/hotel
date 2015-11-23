@@ -219,7 +219,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         });
         jpEditar.add(btNovo);
 
-        btCadastroTelefone.setText("CadastroTelefone");
+        btCadastroTelefone.setText("CADASTRAR TELEFONE");
         btCadastroTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadastroTelefoneActionPerformed(evt);
