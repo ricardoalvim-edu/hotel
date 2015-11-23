@@ -1,6 +1,7 @@
 package org.sistemahotel.Controller;
 
 import org.sistemahotel.Model.Administrador;
+import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
 import org.sistemahotel.dao.factoryDAO.DAOFactory;
 
 /**
@@ -17,5 +18,6 @@ public class ControllerAdministrador extends Controller<Administrador>{
     public Administrador novo() {
         return new Administrador();
     }
+    
     
 }

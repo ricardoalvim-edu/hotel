@@ -262,7 +262,7 @@ public class Hospede implements Serializable, AgendaContato{
 
     @Override
     public String toString() {
-        return "org.sistemahotel.Model.Hospede[ idhospede=" + idhospede + " ]";
+        return nomehospede;
     }
 
     @Override

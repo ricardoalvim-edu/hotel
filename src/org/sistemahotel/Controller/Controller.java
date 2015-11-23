@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.sistemahotel.Model.Acomodacao;
+import org.sistemahotel.Model.Administrador;
 import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.Model.Hospede;
@@ -214,6 +215,7 @@ public abstract class Controller<T>{
     public Object getByUser(String nome, Class classe, String param, String query) {
         return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, nome).uniqueResult();    
     }
+<<<<<<< HEAD
     
     public List<T> getByName(String nome, Class classe, String param, String query) {
         return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, "%"+nome+"%").list();    
@@ -222,5 +224,10 @@ public abstract class Controller<T>{
     public List<Acomodacao> getAcomodacaoLivre(Date entrada, Date saida){
         return HibernateUtil.getSession().getNamedQuery(Acomodacao.class.getSimpleName() + ".findByLivre")
                 .setParameter("entrada", entrada).setParameter("saida", saida).list();
+=======
+    
+    public List<T> getByName(String nome, Class classe, String param, String query) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, "%"+nome+"%").list();    
+>>>>>>> d063fc0b77b48364c824e733087e1383dc04e1bf
     }
 }

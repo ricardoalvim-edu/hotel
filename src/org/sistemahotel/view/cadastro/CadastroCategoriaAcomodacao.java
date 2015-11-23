@@ -297,7 +297,7 @@ public class CadastroCategoriaAcomodacao extends JanelaAbstrata<CategoriaAcomoda
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -389,7 +389,6 @@ public class CadastroCategoriaAcomodacao extends JanelaAbstrata<CategoriaAcomoda
         
         currentView.setNomeCategoria(tfNomeCategoria.getText());
         currentView.setDescricaoCategoria(tfDescricao.getText());
-        
         currentView.setPrecoDiaria(new BigDecimal(tfValorDiaria.getText()));
         currentView.setQtdAdultos(Integer.parseInt(tfAdultos.getText()));
         currentView.setQtdCriancas(Integer.parseInt(tfCriancas.getText()));

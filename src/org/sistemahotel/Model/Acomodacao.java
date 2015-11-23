@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Acomodacao.findAll", query = "SELECT a FROM Acomodacao a"),
     @NamedQuery(name = "Acomodacao.findByIdacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.idAcomodacao = :idacomodacao"),
+    @NamedQuery(name = "Acomodacao.findByCategoria", query = "SELECT a FROM Acomodacao a WHERE a.idCategoria.nomeCategoria = :nome"),
     @NamedQuery(name = "Acomodacao.findByAndaracomodacao", query = "SELECT a FROM Acomodacao a WHERE a.andar = :andaracomodacao"),
     @NamedQuery(name = "Acomodacao.findByLivre", query = "SELECT a FROM Acomodacao a, CadastroEntrada c WHERE a.idAcomodacao = c.idacomodacao AND c.datahoraentrada >= :entrada AND c.datahorasaidaprevista <= :saida"),
     @NamedQuery(name = "Acomodacao.findByNumeroacomodacao", query = "SELECT a FROM Acomodacao a WHERE a.numero = :numeroacomodacao")})
@@ -50,8 +51,9 @@ public class Acomodacao implements Serializable {
     private String numero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idacomodacao")
     private List<CadastroEntrada> cadastroEntrada;
+    
     @JoinColumn(name = "idcategoriaacomodacao", referencedColumnName = "idcategoriaacomodacao")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private CategoriaAcomodacao idCategoria;
 
     public Acomodacao() {
