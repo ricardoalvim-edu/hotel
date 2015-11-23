@@ -226,6 +226,11 @@ public class CadastroReserva extends JanelaAbstrata<Reserva> {
 
         btSalvar1.setText("SALVAR");
         btSalvar1.setPreferredSize(new java.awt.Dimension(73, 50));
+        btSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvar1ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btSalvar1);
 
         btExcluir1.setText("EXCLUIR");
@@ -335,6 +340,11 @@ public class CadastroReserva extends JanelaAbstrata<Reserva> {
         hos.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvar1ActionPerformed
+        // TODO add your handling code here:
+        controle.salvar(getView());
+    }//GEN-LAST:event_btSalvar1ActionPerformed
+
     protected void inicializaComboBoxHospedes(){
         List<Hospede> util = controle.getListaHospede();
         for(Hospede c: util){
@@ -434,8 +444,6 @@ public class CadastroReserva extends JanelaAbstrata<Reserva> {
 
     @Override
     protected Reserva getView() {
-        currentView.setDesconto(new BigDecimal(tfDesconto.getText()));
-
         Calendar checkIn =  
         new Calendar.Builder()  
         .setDate(
@@ -445,7 +453,7 @@ public class CadastroReserva extends JanelaAbstrata<Reserva> {
         .setTimeOfDay(
                 Integer.parseInt(horSpinIn.getValue().toString()),
                 Integer.parseInt(minSpinIn.getValue().toString()), 
-                Integer.parseInt("")).build(); 
+                Integer.parseInt("0")).build(); 
         
         Calendar checkOut =  
         new Calendar.Builder()  
@@ -456,12 +464,13 @@ public class CadastroReserva extends JanelaAbstrata<Reserva> {
         .setTimeOfDay(
                 Integer.parseInt(horSpinOut.getValue().toString()),
                 Integer.parseInt(minSpinOut.getValue().toString()), 
-                Integer.parseInt("")).build(); 
+                Integer.parseInt("0")).build(); 
                 
         Date dateIn = checkIn.getTime();
         Date dateOut = checkOut.getTime();
         currentView.setDatahorachegadareserva(dateIn);
         currentView.setDatahorachegadareserva(dateOut);
+        currentView.setDesconto(new BigDecimal(tfDesconto.getText()));
                                
         CategoriaAcomodacao acomoda = (CategoriaAcomodacao) cbAcomodacao.getSelectedItem();
         
