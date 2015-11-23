@@ -32,7 +32,9 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btAdm = new javax.swing.JButton();
+        btFuncionario = new javax.swing.JButton();
+        btUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOTEL SYSTEM - Gerenciador de Hospedagem");
@@ -61,10 +63,24 @@ public class Home extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("MENU"));
 
-        jButton1.setText("Cadastrar Acomodação");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAdm.setText("Logar Administrador");
+        btAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAdmActionPerformed(evt);
+            }
+        });
+
+        btFuncionario.setText("Logar Funcionário");
+        btFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFuncionarioActionPerformed(evt);
+            }
+        });
+
+        btUser.setText("Logar Usuário");
+        btUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUserActionPerformed(evt);
             }
         });
 
@@ -73,16 +89,23 @@ public class Home extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addGap(234, 234, 234)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btAdm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(btAdm)
+                .addGap(18, 18, 18)
+                .addComponent(btFuncionario)
+                .addGap(18, 18, 18)
+                .addComponent(btUser)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,11 +131,24 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdmActionPerformed
         // TODO add your handling code here:
-        CadastroAcomodacao cadastro = new CadastroAcomodacao();
-        cadastro.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        LoginAdmin loginAdm = new LoginAdmin();
+        loginAdm.setVisible(true);
+        dispose();
+     
+    }//GEN-LAST:event_btAdmActionPerformed
+
+    private void btFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btFuncionarioActionPerformed
+
+    private void btUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserActionPerformed
+        // TODO add your handling code here:
+        LoginUsuario loginAdm = new LoginUsuario();
+        loginAdm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +186,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btAdm;
+    private javax.swing.JButton btFuncionario;
+    private javax.swing.JButton btUser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

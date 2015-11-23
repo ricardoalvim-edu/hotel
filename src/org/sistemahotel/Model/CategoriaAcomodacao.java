@@ -44,7 +44,7 @@ public class CategoriaAcomodacao implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "idcategoriaacomodacao")
     private Integer idCategoria;

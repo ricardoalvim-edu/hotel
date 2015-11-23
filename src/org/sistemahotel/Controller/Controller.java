@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.sistemahotel.Model.Acomodacao;
+import org.sistemahotel.Model.Administrador;
 import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.Model.Hospede;
@@ -214,5 +215,11 @@ public abstract class Controller<T>{
         return dao.getListaHospede();
     }
     
+    public Object getByUser(String nome, Class classe, String param, String query) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, nome).uniqueResult();    
+    }
     
+    public List<T> getByName(String nome, Class classe, String param, String query) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName() + query).setParameter(param, "%"+nome+"%").list();    
+    }
 }
