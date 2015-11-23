@@ -50,8 +50,9 @@ public class Acomodacao implements Serializable {
     private String numero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idacomodacao")
     private List<CadastroEntrada> cadastroEntrada;
+    
     @JoinColumn(name = "idcategoriaacomodacao", referencedColumnName = "idcategoriaacomodacao")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private CategoriaAcomodacao idCategoria;
 
     public Acomodacao() {

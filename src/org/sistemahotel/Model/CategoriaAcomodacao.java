@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.Model;
 
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,11 +42,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CategoriaAcomodacao.findByQuantidadecriancas", query = "SELECT c FROM CategoriaAcomodacao c WHERE c.qtdCriancas = :quantidadecriancas")
 })
 public class CategoriaAcomodacao implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
-    
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private static final long serialVersionUID = 1L;    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idcategoriaacomodacao")
     private Integer idCategoria;
@@ -69,10 +71,10 @@ public class CategoriaAcomodacao implements Serializable {
     @Column(name = "quantidadecriancas")
     private Integer qtdCriancas;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAcomodacao")
+    @OneToMany(mappedBy = "idAcomodacao")
     private List<Acomodacao> acomodacao;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcategoriaacomodacao")
+    @OneToMany(mappedBy = "idcategoriaacomodacao")
     private List<Reserva> reserva;
 
     public CategoriaAcomodacao() { 
@@ -99,9 +101,9 @@ public class CategoriaAcomodacao implements Serializable {
     }
 
     public void setIdCategoria(Integer idCategoria) {
-
+        Integer oldIdCategoria = this.idCategoria;
         this.idCategoria = idCategoria;
-        
+        changeSupport.firePropertyChange("idCategoria", oldIdCategoria, idCategoria);
     }
 
     public String getNomeCategoria() {
