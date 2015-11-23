@@ -11,6 +11,7 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping class="org.sistemahotel.Model.Acomodacao"/>
     <mapping class="org.sistemahotel.Model.Acompanhante"/>
+    <mapping class="org.sistemahotel.Model.Administrador"/>
     <mapping class="org.sistemahotel.Model.CadastroEntrada"/>
     <mapping class="org.sistemahotel.Model.CadastroSaida"/>
     <mapping class="org.sistemahotel.Model.CategoriaAcomodacao"/>

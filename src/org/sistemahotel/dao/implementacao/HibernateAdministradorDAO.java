@@ -11,4 +11,9 @@ public class HibernateAdministradorDAO extends HibernateDAO<Administrador, Integ
     public HibernateAdministradorDAO () {
         super(Administrador.class);
     }
+    
+    @Override
+    public Administrador getByUsuario(String usuario){
+        return (Administrador) this.getByUsuario(usuario, Administrador.class);
+    }
 }

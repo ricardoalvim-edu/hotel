@@ -7,6 +7,10 @@ package org.sistemahotel.dao.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
+import org.sistemahotel.Model.Acomodacao;
+import org.sistemahotel.Model.CategoriaAcomodacao;
+import org.sistemahotel.Model.CategoriaProduto;
+import org.sistemahotel.Model.Hospede;
 
 /**
  *
@@ -25,4 +29,12 @@ public interface DAO<T, Type extends Serializable> {
     public void saveAndCommit(T entity);
     public void deleteAndCommit(T entity);
     public List<T> listPaged(int begin, int amount);
+    
+    public T getByUsuario(String usuario);
+    public Object getByUsuario(String user, Class classe);
+    
+    public List<CategoriaProduto> getListaCategoriaProduto();
+    public List<CategoriaAcomodacao> getListaCategoriaAcomodacao();
+    public List<Acomodacao> getListaAcomodacao();
+    public List<Hospede> getListaHospede();
 }

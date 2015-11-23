@@ -19,5 +19,11 @@ public class HibernateHospedeDAO
     public HibernateHospedeDAO() {
         super(Hospede.class);
     }
+
+    @Override
+    public Hospede getByUsuario(String usuario) {
+        return (Hospede) getByUsuario(usuario, Hospede.class);
+    }
+    
     
 }

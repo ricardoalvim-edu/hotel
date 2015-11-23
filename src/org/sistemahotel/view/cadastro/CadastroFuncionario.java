@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import javax.swing.JOptionPane;
 import org.sistemahotel.Controller.ControllerFuncionario;
 import org.sistemahotel.Model.Funcionario;
 import org.sistemahotel.view.JanelaAbstrata;
@@ -48,6 +49,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         btNovo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btCadastroTelefone = new javax.swing.JButton();
+        btCadastrarLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,6 +226,13 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
             }
         });
 
+        btCadastrarLogin.setText("CADASTRAR LOGIN");
+        btCadastrarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastrarLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -231,13 +240,17 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btCadastroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btCadastrarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btCadastroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadastroTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCadastrarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
@@ -297,6 +310,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         controle.salvar(getView());
+        setView(controle.exibeAtual());
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -314,6 +328,11 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
         // TODO add your handling code here:
         this.cadastroTelefone(currentView);
     }//GEN-LAST:event_btCadastroTelefoneActionPerformed
+
+    private void btCadastrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarLoginActionPerformed
+        // TODO add your handling code here:
+        this.cadastroLogin(getView());
+    }//GEN-LAST:event_btCadastrarLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +371,7 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btCadastrarLogin;
     private javax.swing.JButton btCadastroTelefone;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
@@ -425,8 +445,29 @@ public class CadastroFuncionario extends JanelaAbstrata<Funcionario> {
     }
     
     private void cadastroTelefone(Funcionario objeto){
-      CadastroTelefone tela =  new CadastroTelefone(objeto);
-      tela.setVisible(true);
+      if(controle.getLista().contains(objeto)){
+          CadastroTelefone tela =  new CadastroTelefone(objeto);
+          tela.setVisible(true);
+      }else{
+          JOptionPane.showConfirmDialog(this,"Não é possível adicionar telefone!!\nSalve as informações do Funcionário para continuar",
+                                            "Alerta!!",JOptionPane.YES_OPTION ,JOptionPane.WARNING_MESSAGE);
+      }
     }
     
+    private void cadastroLogin(Funcionario objeto){
+        // Verifica se o Funcionario já está cadastrado na base de dados
+       // Condição para cadastrar uma senha e um usuario
+        if(controle.listAll().contains(objeto)){
+            String usuario = JOptionPane.showInputDialog(this, "Informe o Usuario", "Usuario", JOptionPane.QUESTION_MESSAGE);
+            String senha = JOptionPane.showInputDialog(this, "Informe a sua Senha", "Senha", JOptionPane.QUESTION_MESSAGE);
+            objeto.setUsuario(usuario);
+            objeto.setSenhafuncionario(senha);
+            
+            controle.salvar(objeto);
+            JOptionPane.showMessageDialog(this, "Usuario e Senha cadastrado!!", "Sucesso!!", JOptionPane.YES_OPTION);
+        }else{
+           JOptionPane.showConfirmDialog(this,"Não é possível cadastrar login e senha!!\nSalve as informações do Funcionário para continuar",
+                                            "Alerta!!",JOptionPane.YES_OPTION,JOptionPane.WARNING_MESSAGE); 
+        }
+    }
 }

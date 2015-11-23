@@ -25,6 +25,7 @@ public class ControllerTelefone extends Controller<Telefone> implements AgendaCo
     }
     
     public ControllerTelefone(AgendaContato proprietario){
+        super();
         this.dao = DAOFactory.getDAOFactory().getTelefoneDAO();
         this.lista = proprietario.getListaTelefone();
         this.proprietario = proprietario;
@@ -38,7 +39,7 @@ public class ControllerTelefone extends Controller<Telefone> implements AgendaCo
     }
     
     @Override
-    public List<Telefone> listarTudo(){
+    public List<Telefone> listAll(){
         return this.lista;
     }
 

@@ -5,11 +5,17 @@
  */
 package org.sistemahotel.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.sistemahotel.Model.Acomodacao;
 import org.sistemahotel.Model.CategoriaAcomodacao;
 import org.sistemahotel.Model.CategoriaProduto;
 import org.sistemahotel.Model.Hospede;
+import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
+import org.sistemahotel.dao.factoryDAO.DAOFactory;
+import org.sistemahotel.dao.interfaces.CategoriaAcomodacaoDAO;
+import org.sistemahotel.dao.interfaces.CategoriaProdutoDAO;
 import org.sistemahotel.dao.interfaces.DAO;
 
 /**
@@ -30,6 +36,7 @@ public abstract class Controller<T>{
    */
     public Controller(){
         this.cursor = 0;
+        this.lista = new ArrayList<>();
     }
    /*
     O método novo retorna um objeto do tipo do tipo do controller está lidando, por isso que eu coloquei esse método como abstrato.
@@ -76,9 +83,22 @@ public abstract class Controller<T>{
    public T exibeAtual(){
        return current();
    }
+   /**
+    * Faz uma consulta na base de dados, atualiza a lista de resultados do controller, e retorna essa lista 
+    * com os dados atualizados da base de dados.
+    * @return List<T>
+    */
+   public List<T> listAll(){
+       lista = dao.listAll();
+       return lista;
+   }
    
-   public List<T> listarTudo(){
-       return dao.listAll();
+   /**
+    * Retorna o estado atual da lista do controller. Não atualiza com a base de dados.
+    * @return List<T>
+    */
+   public List<T> getLista(){
+       return this.lista;
    }
    
    /*
@@ -175,20 +195,24 @@ public abstract class Controller<T>{
 
     /*
         Acho que não é uma boa prática deixar esse método aqui, massss.......
+    digamos que eu furei a camada para fazer as coisas funcionárem mais rapidamente
     */
+    
     public List<CategoriaProduto> getListaCategoriaProduto() {
-        return null;
+        return dao.getListaCategoriaProduto();        
     }
     
     public List<CategoriaAcomodacao> getListaCategoriaAcomodacao() {
-        return null;
+        return dao.getListaCategoriaAcomodacao();
     }
     
     public List<Acomodacao> getListaAcomodacao() {
-        return null;
+       return dao.getListaAcomodacao();
     }
     
     public List<Hospede> getListaHospede() {
-        return null;
+        return dao.getListaHospede();
     }
+    
+    
 }

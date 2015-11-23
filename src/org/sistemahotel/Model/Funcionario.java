@@ -35,9 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f"),
     @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario"),
+    @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario"),
     @NamedQuery(name = "Funcionario.findByNomefuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomefuncionario = :nomefuncionario"),
     @NamedQuery(name = "Funcionario.findByDatanascimento", query = "SELECT f FROM Funcionario f WHERE f.datanascimento = :datanascimento"),
-    @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario"),
     @NamedQuery(name = "Funcionario.findByDocumentoidentificacao", query = "SELECT f FROM Funcionario f WHERE f.numeroRG = :numeroRG"),
     @NamedQuery(name = "Funcionario.findByIdendereco", query = "SELECT f FROM Funcionario f WHERE f.endereco = :endereco")})
 public class Funcionario implements Serializable, AgendaContato{

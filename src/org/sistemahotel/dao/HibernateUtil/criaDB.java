@@ -16,5 +16,7 @@ public class criaDB {
      
      SessionFactory factory = configuration.buildSessionFactory();
      Session session = factory.openSession();
+     
+     
     }
 }

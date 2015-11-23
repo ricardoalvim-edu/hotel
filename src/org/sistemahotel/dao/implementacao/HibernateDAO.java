@@ -8,7 +8,10 @@ package org.sistemahotel.dao.implementacao;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
+import org.sistemahotel.Model.Acomodacao;
+import org.sistemahotel.Model.CategoriaAcomodacao;
+import org.sistemahotel.Model.CategoriaProduto;
+import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.dao.HibernateUtil.HibernateUtil;
 import org.sistemahotel.dao.interfaces.DAO;
 
@@ -102,6 +105,51 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements DAO<
         this.commitTransaction();
         return lista;
     }
+
+    @Override
+    public T getByUsuario(String usuario){
+        return null;
+    };
+    
+    @Override
+    public Object getByUsuario(String user, Class classe) {
+        return HibernateUtil.getSession().getNamedQuery(classe.getSimpleName()+".findByUsuario").setParameter("usuario", user).uniqueResult();
+    }
+
+    @Override
+    public List<CategoriaProduto> getListaCategoriaProduto() {
+        HibernateUtil.beginTransaction();
+        Criteria criteria = HibernateUtil.getSession().createCriteria(CategoriaProduto.class);
+        HibernateUtil.commitTransaction();
+        return criteria.list();
+    }
+
+    @Override
+    public List<CategoriaAcomodacao> getListaCategoriaAcomodacao() {
+        HibernateUtil.beginTransaction();
+        Criteria criteria = HibernateUtil.getSession().createCriteria(CategoriaAcomodacao.class);
+        HibernateUtil.commitTransaction();
+        
+        return criteria.list();
+    }
+    
+    @Override
+    public List<Acomodacao> getListaAcomodacao() {
+        HibernateUtil.beginTransaction();
+        Criteria criteria = HibernateUtil.getSession().createCriteria(Acomodacao.class);
+        HibernateUtil.commitTransaction();
+        
+        return criteria.list();
+    }
+
+    @Override
+    public List<Hospede> getListaHospede() {
+        HibernateUtil.beginTransaction();
+        Criteria criteria = HibernateUtil.getSession().createCriteria(Hospede.class);
+        
+        return criteria.list();
+    }
+    
     
     
     

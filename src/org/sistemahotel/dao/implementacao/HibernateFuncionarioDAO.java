@@ -19,5 +19,12 @@ public class HibernateFuncionarioDAO
     public HibernateFuncionarioDAO() {
         super(Funcionario.class);
     }
+
+    @Override
+    public Funcionario getByUsuario(String usuario) {
+       return (Funcionario) getByUsuario(usuario, Funcionario.class);
+    }
+    
+    
     
 }

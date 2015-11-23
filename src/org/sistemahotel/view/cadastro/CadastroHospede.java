@@ -5,6 +5,7 @@
  */
 package org.sistemahotel.view.cadastro;
 
+import javax.swing.JOptionPane;
 import org.sistemahotel.Controller.ControllerHospede;
 import org.sistemahotel.Model.Hospede;
 import org.sistemahotel.view.JanelaAbstrata;
@@ -66,19 +67,22 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         PanelContato = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableTelefones = new javax.swing.JTable();
-        jLabel14 = new javax.swing.JLabel();
-        tfTelefone = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        tfDDD = new javax.swing.JTextField();
-        tfDDI = new javax.swing.JTextField();
+        jbAdicionar = new javax.swing.JButton();
+        btListarTelefone = new javax.swing.JButton();
         PanelAcompanhantes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAcompanhantes = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
+        panelLogin = new javax.swing.JPanel();
+        tfUsuario = new javax.swing.JTextField();
+        jpfSenha = new javax.swing.JPasswordField();
+        jpfConfirmarSenha = new javax.swing.JPasswordField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        btConfimarLogin = new javax.swing.JButton();
+        btLimparLogin = new javax.swing.JButton();
+        tfAlerta = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -226,7 +230,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
                                 .addComponent(jLabel8)
                                 .addGap(179, 179, 179)
                                 .addComponent(jLabel9)))
-                        .addGap(0, 98, Short.MAX_VALUE))
+                        .addGap(0, 119, Short.MAX_VALUE))
                     .addGroup(PanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(PanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDadosPessoaisLayout.createSequentialGroup()
@@ -362,68 +366,37 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         ));
         jScrollPane2.setViewportView(tableTelefones);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("Telefone:");
+        jbAdicionar.setText("ADICIONAR TELEFONE");
+        jbAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAdicionarActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("<<");
-
-        jButton2.setText("Adicionar");
-
-        jButton3.setText("Excluir");
-
-        jButton4.setText(">>");
-
-        jButton5.setText("Novo");
+        btListarTelefone.setText("LISTAR TELEFONES");
 
         javax.swing.GroupLayout PanelContatoLayout = new javax.swing.GroupLayout(PanelContato);
         PanelContato.setLayout(PanelContatoLayout);
         PanelContatoLayout.setHorizontalGroup(
             PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContatoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel14)
-                    .addGroup(PanelContatoLayout.createSequentialGroup()
-                        .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelContatoLayout.createSequentialGroup()
-                                .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelContatoLayout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)))))
-                .addGap(39, 39, 39))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+            .addGroup(PanelContatoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                    .addComponent(btListarTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelContatoLayout.setVerticalGroup(
             PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContatoLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel14)
-                .addGap(7, 7, 7)
-                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(PanelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(22, 22, 22)
+                .addComponent(jbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btListarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informações para Contato", PanelContato);
@@ -450,7 +423,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
             .addGroup(PanelAcompanhantesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelAcompanhantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addGroup(PanelAcompanhantesLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -467,6 +440,81 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         );
 
         jTabbedPane1.addTab("Acompanhantes", PanelAcompanhantes);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setText("Usuário");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setText("Senha");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel17.setText("Confirme a Senha");
+
+        btConfimarLogin.setText("CONFIRMAR");
+        btConfimarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConfimarLoginActionPerformed(evt);
+            }
+        });
+
+        btLimparLogin.setText("LIMPAR");
+        btLimparLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparLoginActionPerformed(evt);
+            }
+        });
+
+        tfAlerta.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
+        panelLogin.setLayout(panelLoginLayout);
+        panelLoginLayout.setHorizontalGroup(
+            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLoginLayout.createSequentialGroup()
+                                .addComponent(btConfimarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(btLimparLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel14)
+                            .addComponent(jpfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(tfAlerta)))
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+        panelLoginLayout.setVerticalGroup(
+            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(tfAlerta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btConfimarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLimparLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Login", panelLogin);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -539,6 +587,21 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         setView(controle.exibeUltimo());
     }//GEN-LAST:event_btUltimoActionPerformed
 
+    private void jbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarActionPerformed
+        // TODO add your handling code here:
+        cadastroTelefone(getView());
+    }//GEN-LAST:event_jbAdicionarActionPerformed
+
+    private void btConfimarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfimarLoginActionPerformed
+        // TODO add your handling code here:
+        this.cadastraSenha(getView());
+    }//GEN-LAST:event_btConfimarLoginActionPerformed
+
+    private void btLimparLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparLoginActionPerformed
+        // TODO add your handling code here:
+        limparCamposSenha();
+    }//GEN-LAST:event_btLimparLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,17 +647,15 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JPanel PanelNavegar;
     private javax.swing.JPanel PanelTitulo;
     private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btConfimarLogin;
     private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btLimparLogin;
+    private javax.swing.JButton btListarTelefone;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btPrimeiro;
     private javax.swing.JButton btProximo;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btUltimo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -603,6 +664,8 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -617,12 +680,15 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jbAdicionar;
+    private javax.swing.JPasswordField jpfConfirmarSenha;
+    private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JPanel panelLogin;
     private javax.swing.JTable tableAcompanhantes;
     private javax.swing.JTable tableTelefones;
+    private javax.swing.JLabel tfAlerta;
     private javax.swing.JTextField tfCPF;
     private javax.swing.JTextField tfCod;
-    private javax.swing.JTextField tfDDD;
-    private javax.swing.JTextField tfDDI;
     private javax.swing.JTextField tfEndCidade;
     private javax.swing.JTextField tfEndComplemento;
     private javax.swing.JTextField tfEndLogradouro;
@@ -633,7 +699,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     private javax.swing.JTextField tfPaisOrigem;
     private javax.swing.JTextField tfPassaporte;
     private javax.swing.JTextField tfRgHospede;
-    private javax.swing.JTextField tfTelefone;
+    private javax.swing.JTextField tfUsuario;
     private javax.swing.JFormattedTextField tfdataNascimento;
     // End of variables declaration//GEN-END:variables
     private Hospede currentView;
@@ -653,6 +719,7 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
         if(objeto == null){
             setView(controle.novo());
         }else{
+           currentView = objeto;
            //Primeiro panel
            tfNomeHospede.setText(objeto.getNomehospede());
            tfOrgaoEmissor.setText(objeto.getRgEmissor());
@@ -689,22 +756,88 @@ public class CadastroHospede extends JanelaAbstrata<Hospede> {
     @Override
     protected Hospede getView() {
         currentView.setNomehospede(tfNomeHospede.getText());
-        currentView.setRgEmissor("");
-        currentView.setRghospede("");
-        currentView.setCpfhospede("");
-        currentView.setPassaporte("");
-        currentView.setPaisOrigem("");
-        currentView.setFiliacao("");
+        currentView.setRgEmissor(tfOrgaoEmissor.getText());
+        currentView.setRghospede(tfRgHospede.getText());
+        currentView.setCpfhospede(tfCPF.getText());
+        currentView.setPassaporte(tfPassaporte.getText());
+        currentView.setPaisOrigem(tfPaisOrigem.getText());
+        currentView.setFiliacao(tfFiliacao.getText());
         currentView.setDataNascimento(tfdataNascimento.getText());
-        
+        /*
         currentView.getEndereco().setCidade("");
         currentView.getEndereco().setComplemento("");
         currentView.getEndereco().setNomelodradouro("");
         currentView.getEndereco().setNumero("");
   
-        
+        */
         
         return currentView;
+    }
+    
+    private void cadastroTelefone(Hospede objeto){
+        if(controle.getLista().contains(objeto)){
+            CadastroTelefone tela = new CadastroTelefone(objeto);
+            tela.setVisible(true);
+        }else{
+            JOptionPane.showConfirmDialog(this,"Não é possível adicionar telefone!!\nSalve as informações do Hospede para continuar!!",
+                                            "Alerta!!",JOptionPane.OK_OPTION,JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void cadastraSenha(Hospede hospede){
+        if(confirmaExistenciaBaseDados(hospede)){
+            if(confirmaPreenchimentoCampos()){
+                if(confirmaSenhasDigitadas()){
+                    String  user = tfUsuario.getText();
+                    String senha = jpfSenha.getText();
+                    
+                    hospede.setUsuario(user);
+                    hospede.setSenha(senha);
+                    
+                    controle.salvar(hospede);
+                    tfAlerta.setText("Usuario e Senha Cadastrado");
+                    limparCamposSenha();
+                    
+                }else{
+                    tfAlerta.setText("Senhas digitadas não são iguais. Verifique!!");
+                }
+            }else{
+                tfAlerta.setText("Campos vazios!! Verifique!!");
+            }
+        }else{
+            tfAlerta.setText("Salve as informações do Hospede antes de continuar");
+        }
+    }
+    
+    private boolean confirmaPreenchimentoCampos(){
+        String user = tfUsuario.getText();
+        String senha1 = jpfSenha.getText();
+        String senha2 = jpfConfirmarSenha.getText();
+        boolean resposta = false;
+        
+        if(user != null && senha1 != null && senha2 != null){
+            if(!user.isEmpty() && !senha1.isEmpty() && !senha2.isEmpty()){
+                resposta = true;
+            }
+        }
+        return resposta;
+    }
+    
+    private boolean confirmaExistenciaBaseDados(Hospede hospede){
+        return controle.listAll().contains(hospede);
+    }
+    
+    private boolean confirmaSenhasDigitadas(){
+        String senha1 = jpfSenha.getText();
+        String senha2 = jpfConfirmarSenha.getText();
+        
+        return senha1.equals(senha2);
+    }
+    
+    private void limparCamposSenha(){
+        tfUsuario.setText("");
+        jpfSenha.setText("");
+        jpfConfirmarSenha.setText("");
     }
 
 }

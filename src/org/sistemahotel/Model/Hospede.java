@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Hospede.findAll", query = "SELECT h FROM Hospede h"),
+    @NamedQuery(name = "Hospede.findByUsuario", query="SELECT h FROM Hospede h WHERE h.usuario = :usuario"),
     @NamedQuery(name = "Hospede.findByIdhospede", query = "SELECT h FROM Hospede h WHERE h.idhospede = :idhospede"),
     @NamedQuery(name = "Hospede.findByNomehospede", query = "SELECT h FROM Hospede h WHERE h.nomehospede = :nomehospede"),
     @NamedQuery(name = "Hospede.findByRghospede", query = "SELECT h FROM Hospede h WHERE h.rghospede = :rghospede"),
@@ -44,7 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hospede.findByCpfhospede", query = "SELECT h FROM Hospede h WHERE h.cpfhospede = :cpfhospede"),
     @NamedQuery(name = "Hospede.findByDatanascimentohospede", query = "SELECT h FROM Hospede h WHERE h.dataNascimento = :datanascimentohospede"),
     @NamedQuery(name = "Hospede.findByFiliacaohospede", query = "SELECT h FROM Hospede h WHERE h.filiacao = :filiacaohospede"),
-    @NamedQuery(name = "Hospede.findByPassaportehospedeestrangeiro", query = "SELECT h FROM Hospede h WHERE h.passaporte = :passaportehospedeestrangeiro")})
+    @NamedQuery(name = "Hospede.findByPassaportehospedeestrangeiro", query = "SELECT h FROM Hospede h WHERE h.passaporte = :passaportehospedeestrangeiro")
+})
 public class Hospede implements Serializable, AgendaContato{
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,6 +54,12 @@ public class Hospede implements Serializable, AgendaContato{
     @Basic(optional = false)
     @Column(name = "idhospede")
     private Integer idhospede;
+    
+    @Column(name = "usuariohospede")
+    private String usuario;
+    
+    @Column(name = "senhahospede")
+    private String senha;
     
     @Column(name = "nomehospede")
     private String nomehospede;
@@ -270,6 +278,22 @@ public class Hospede implements Serializable, AgendaContato{
     @Override
     public String getNomeProprietarioAgenda() {
         return this.getNomehospede();
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
    
 }

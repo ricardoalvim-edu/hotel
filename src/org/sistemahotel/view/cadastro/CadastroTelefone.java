@@ -399,7 +399,7 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
         this.controle = new ControllerTelefone(proprietario);
         
         setTableModelTelefone();
-        setDateTableTelefone(controle.listarTudo());
+        setDateTableTelefone(controle.listAll());
         
         currentView = controle.exibePrimeiro();
         setView(currentView);
@@ -430,8 +430,8 @@ public class CadastroTelefone extends JanelaAbstrata<Telefone> {
     private void adicionarTelefone(Telefone telefone){
         //adiciona registro à lista de objetos
         TableModelTelefone model = (TableModelTelefone) tabTelefone.getModel();
-        if(!controle.listarTudo().contains(telefone)){
-            controle.listarTudo().add(telefone);
+        if(!controle.listAll().contains(telefone)){
+            controle.listAll().add(telefone);
             model.addTelefone(telefone);
         }else{
             model.updateTelefone(telefone);

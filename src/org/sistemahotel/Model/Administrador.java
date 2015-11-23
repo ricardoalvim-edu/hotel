@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,6 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "Administrador")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Administrador.findAll", query = "SELECT a FROM Administrador a"),
+    @NamedQuery(name = "Administrador.findByUsuario", query = "SELECT a FROM Administrador a WHERE a.usuario = :usuario")
+})
 public class Administrador implements Serializable{
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
